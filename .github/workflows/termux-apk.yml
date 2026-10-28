@@ -1,0 +1,71 @@
+name: PotuzhnoGram APK
+run-name: PotuzhnoGram APK • ${{ inputs.build_id }}
+on:
+  workflow_dispatch:
+    inputs:
+      build_id:
+        description: Build request identifier
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      NATIVE_TARGET: arm64-v8a
+      TELEGRAM_APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
+      TELEGRAM_APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: android-actions/setup-android@v3
+      - name: Install build dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends nasm ninja-build pkg-config
+          sdkmanager "platforms;android-37.0" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.31.6"
+          echo "CHAQUOPY_BUILD_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
+          echo "$ANDROID_HOME/cmake/3.31.6/bin" >> "$GITHUB_PATH"
+      - name: Prepare and check
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          Path("local.properties").write_text("sdk.dir=" + os.environ["ANDROID_HOME"] + "\n")
+          PY
+          python prepare.py
+          python scripts/check.py
+      - name: Build ARM64 APK
+        run: python build.py --abi arm64-v8a
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PotuzhnoGram-arm64
+          path: client/TMessagesProj/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: |
+            client/build/reports/
+            client/TMessagesProj/build/reports/
+          if-no-files-found: ignore
+          retention-days: 3
