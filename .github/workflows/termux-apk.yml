@@ -30,6 +30,8 @@ jobs:
         with:
           python-version: '3.11'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - name: Install build dependencies
         shell: bash
         run: |
