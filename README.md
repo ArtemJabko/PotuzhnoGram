@@ -1,94 +1,191 @@
+<div align="center">
+
+<img src="branding/icon.jpg" width="160" alt="PotuzhnoGram">
+
 # ПотужноGram 🇺🇦
+### Telegram з українським характером
+### Telegram with Ukrainian character
 
-Украинское оформление Telegram-клиента для Android: сине-жёлтая иконка, темы «Потужно • День» и «Потужно • Ніч», обои с орнаментом и мелодия «Батько наш Бандера — minions vocal» для входящих звонков.
+</div>
 
-![Иконка ПотужноGram](branding/icon.jpg)
+---
 
-**Статус: исходники и оформление подготовлены; APK в этой среде не собран и на телефоне не проверен.** Проверены применение патча, повторный запуск подготовки, целостность ресурсов и наличие движка плагинов. Успешную сборку и полную совместимость плагинов пока не заявляем.
+## 🇺🇦 Українська
 
-## Что внутри
+ПотужноGram — незалежний неофіційний Telegram-клієнт для Android з українським оформленням та підтримкою Python-плагінів.
 
-- Отдельный пакет `ua.potuzhnogram.messenger`: можно установить рядом с Telegram.
-- Две встроенные темы с локальными обоями; светлая выбирается при первом запуске, тёмная используется для ночного режима.
-- Иконки для пяти плотностей экрана и адаптивная иконка Android.
-- Присланная владельцем мелодия, полностью, в OGG. Она применяется только при отсутствии выбранного звука; выбор пользователя и настройки звонков сохраняются.
-- Открытый Python-движок **exteraless**, включая слой совместимости `com.exteragram.messenger.plugins`. Это реализация совместимости, а не обещание работы каждого плагина exteraGram/AyuGram.
-- Обновления направлены на Releases этого репозитория.
-- Чужие Telegram API credentials и Firebase-конфигурация не используются при подготовке.
+### Можливості
 
-## Получить исходники
+- Синьо-жовта іконка з українською символікою.
+- Світла тема «Потужно • День» і темна «Потужно • Ніч».
+- Вбудовані шпалери з орнаментом у стилі вишивки.
+- «Батько наш Бандера — minions vocal» як стандартна мелодія вхідних дзвінків.
+- Можливість змінювати тему, шпалери та мелодію.
+- Python-плагіни на основі відкритого рушія exteraless.
+- Окремий пакет `ua.potuzhnogram.messenger` для встановлення поруч з іншими клієнтами.
 
-**Если скачал подготовленный ZIP из чата:** распакуй его и запусти `python prepare.py --init`. Скрипт скачает закреплённые исходники и подмодули, затем применит оформление. Сам ZIP содержит изменения и ресурсы, а Android-основа загружается этой командой. Запись в GitHub пока заблокирована ошибкой подключения `403 Resource not accessible by integration`.
+Власноруч вибрані звуки зберігаються. Основа має шар сумісності з API exteraGram, але робота кожного плагіна exteraGram або AyuGram не гарантується.
 
-Весь Android-клиент подключён как Git-подмодуль `client`, закреплённый на коммите из `upstream.json`. Изменения ПотужноGram находятся в `patches/potuzhno.patch`, дополнительные ресурсы — в `overlay`. GitHub ZIP не содержит подмодули: используй Git.
+### Стан проєкту
 
-```bash
-git clone --recursive --shallow-submodules https://github.com/ArtemJabko/PotuzhnoGram.git
-cd PotuzhnoGram
-python prepare.py
-```
+Підготовлено зміни вихідного коду, оформлення, мелодію та сценарії підготовки й збирання. Перевірено застосування патча, повторну підготовку, цілісність ресурсів і завантаження прикладу плагіна з SDK.
 
-Если скачал без подмодулей:
+**Успішне збирання APK та роботу на телефоні ще не підтверджено.**
 
-```bash
-git submodule update --init --recursive --depth=1
-python prepare.py
-```
+### Завантаження та підготовка
 
-`prepare.py` проверяет закреплённую версию, применяет патч и копирует ресурсы. Повторный запуск безопасен: конфликтующие правки не сбрасываются автоматически.
+Виконай на комп’ютері:
 
-## Сборка APK на компьютере
+    git clone --recursive --shallow-submodules https://github.com/ArtemJabko/PotuzhnoGram.git
+    cd PotuzhnoGram
+    python prepare.py
 
-Требования закреплённой основы:
+Якщо підмодулі не завантажені:
 
-- Git, **JDK 21**, Python **3.11**; на Windows также Bash для сборки нативного runtime Chaquopy (например, Git Bash; удобнее WSL2).
-- Android SDK **37**, Build Tools **36.0.0**, NDK **27.2.12479018**, CMake **3.31.6+**.
-- Интернет для Gradle, Maven, Python-зависимостей и подмодулей. Желательно 16 ГБ RAM и не менее 30 ГБ свободного диска.
+    git submodule update --init --recursive --depth=1
+    python prepare.py
 
-1. Получи собственные `api_id` и `api_hash` на [my.telegram.org/apps](https://my.telegram.org/apps).
-2. Скопируй `local.properties.example` в `local.properties` в корне репозитория и заполни `TELEGRAM_APP_ID`, `TELEGRAM_APP_HASH` и путь `sdk.dir` (либо установи `ANDROID_HOME`). Эти значения не нужно присылать в чат или коммитить.
-3. Запусти:
+### Збирання APK
 
-```bash
-python build.py
-```
+Потрібні Git, JDK 21, Python 3.11, Android SDK 37, Build Tools 36.0.0, NDK 27.2.12479018 та CMake 3.31.6 або новіша сумісна версія.
 
-По умолчанию собирается debug APK для ARM64. Другие варианты:
+1. Отримай власні `api_id` і `api_hash` на https://my.telegram.org/apps.
+2. Скопіюй `local.properties.example` у `local.properties`.
+3. Заповни `TELEGRAM_APP_ID`, `TELEGRAM_APP_HASH` і шлях до Android SDK.
+4. Запусти `python build.py`.
 
-```bash
-python build.py --abi universal
-python build.py --release
-```
+Типово збирається debug APK для ARM64. Додаткові варіанти:
+
+    python build.py --abi universal
+    python build.py --release
 
 Результат: `client/TMessagesProj/build/outputs/apk/`.
 
-В Android Studio сначала выполни `python prepare.py`, затем открой папку **client**, выбери Gradle JDK 21 и собери `:TMessagesProj:assembleDebug`. Исходная версия Gradle указана в `client/gradle/wrapper/gradle-wrapper.properties`.
+Для Android Studio спочатку виконай підготовку, потім відкрий папку `client` та вибери JDK 21.
 
-Без собственного release-keystore upstream использует debug-подпись даже для release. Для постоянных обновлений создай свой ключ, положи его в `client/TMessagesProj/release.keystore` и заполни поля подписи из примера. Сохрани ключ: будущие APK должны подписываться им же.
+Для власного підпису поклади ключ у `client/TMessagesProj/release.keystore` і заповни параметри підпису в `local.properties`. Без власного ключа основа використовує debug-підпис, зокрема для release-збирання.
 
-## Push-уведомления
+### Сповіщення
 
-Firebase необязателен для компиляции. Для FCM создай Firebase Android app с пакетом `ua.potuzhnogram.messenger` и положи свой `google-services.json` в корень проекта **до** подготовки. Без него доставка уведомлений при закрытом приложении зависит от других механизмов клиента и ограничений Android.
+Для FCM додай власний `google-services.json` у корінь проєкту перед підготовкою. У Firebase зареєструй пакет `ua.potuzhnogram.messenger`.
 
-Если конфигурация уже скопирована в `client` и ты меняешь её в корне, синхронизируй обе копии вручную: подготовка не перезаписывает отличающийся пользовательский файл.
+Без конфігурації FCM доставка сповіщень у фоні залежить від інших механізмів клієнта й обмежень Android.
 
-## Плагины
+### Плагіни
 
-В настройках клиента открой раздел плагинов, включи движок и установи файл `.py` через его интерфейс. Унаследована модель разрешений exteraless. Плагины, которые обращаются к закрытым внутренним классам exteraGram или используют отличающийся API, могут потребовать адаптации.
+Відкрий розділ плагінів у налаштуваннях клієнта, увімкни рушій та встанови файл `.py`.
 
-Минимальный пример лежит в `examples/potuzhno_hello.py`. Он проверяет загрузку и отображение настроек, не читает переписку.
+Приклад: `examples/potuzhno_hello.py`.
 
-## Проверка перед использованием
+Успадковано модель дозволів exteraless. Плагіни, залежні від закритих класів або іншої версії API, можуть потребувати адаптації.
 
-- Вход в аккаунт, отправка и получение сообщений.
-- Входящий звонок в открытом приложении и на заблокированном экране.
-- Режим без звука/DND, выбранная пользовательская мелодия, мелодия отдельного контакта.
-- Дневная/ночная тема, смена обоев, сохранение выбранной темы после перезапуска.
-- Установка, включение, отключение и удаление тестового плагина.
-- Установка обновления поверх предыдущей версии с тем же ключом.
+### Структура проєкту
 
-## Основа и авторы
+- `client` — Android-основа, закріплена як Git-підмодуль.
+- `patches` — зміни вихідного коду ПотужноGram.
+- `overlay` — іконки, теми та мелодія.
+- `branding` — попередній перегляд оформлення.
+- `examples` — приклад плагіна.
+- `prepare.py` — підготовка вихідного коду.
+- `build.py` — запуск локального збирання.
 
-Основа: [exteraless](https://github.com/exteraless/exteraless), открытый форк NagramX с Python-плагинами. История и лицензии доступны в подмодуле; исходный README сохранён в [UPSTREAM.md](UPSTREAM.md). Благодарности Telegram, NagramX, Nagram, Nekogram, exteraGram, AyuGram и остальным авторам основы. Дизайнеры унаследованных элементов exteraGram: @the8055u и @BlueprintDsgn.
+### Автори та ліцензії
 
-В корне сохранена лицензия GPL-3.0 из закреплённой основы, см. LICENSE; сторонние части сохраняют свои лицензии и заголовки. Присланная аудиозапись сохраняет права её авторов и исполнителей и не перелицензируется под GPL. Новая иконка создана для этого проекта.
+Основа: [exteraless](https://github.com/exteraless/exteraless), відкритий форк NagramX. Подяка авторам Telegram, NagramX, Nagram, Nekogram, exteraGram, AyuGram та інших складових.
+
+Автори успадкованого оформлення exteraGram: @the8055u та @BlueprintDsgn. Початковий опис основи збережено в `UPSTREAM.md`.
+
+Ліцензія основи GPL-3.0 збережена у `LICENSE`. Сторонні компоненти зберігають власні ліцензії. Аудіозапис не перелiцензовується під GPL; права належать відповідним правовласникам.
+
+ПотужноGram не є офіційним застосунком Telegram.
+
+---
+
+## 🇬🇧 English
+
+PotuzhnoGram is an independent, unofficial Telegram client for Android with Ukrainian styling and Python plugin support.
+
+### Features
+
+- Blue-and-yellow app icon with Ukrainian symbolism.
+- “Потужно • День” light theme and “Потужно • Ніч” dark theme.
+- Bundled embroidery-inspired wallpapers.
+- “Батько наш Бандера — minions vocal” as the default incoming-call ringtone.
+- Customizable themes, wallpapers and ringtones.
+- Python plugins powered by the open-source exteraless engine.
+- Separate application ID, `ua.potuzhnogram.messenger`, for installation alongside other clients.
+
+Manually selected ringtones are preserved. The foundation includes an exteraGram API compatibility layer, but compatibility with every exteraGram or AyuGram plugin is not guaranteed.
+
+### Project status
+
+Source modifications, visual assets, the ringtone and preparation/build scripts are provided. Patch application, repeated preparation, asset integrity and loading the example plugin with the upstream SDK have been checked.
+
+**A successful APK build and on-device operation have not yet been verified.**
+
+### Download and prepare
+
+Run on your computer:
+
+    git clone --recursive --shallow-submodules https://github.com/ArtemJabko/PotuzhnoGram.git
+    cd PotuzhnoGram
+    python prepare.py
+
+If submodules were omitted:
+
+    git submodule update --init --recursive --depth=1
+    python prepare.py
+
+### Build the APK
+
+Requirements: Git, JDK 21, Python 3.11, Android SDK 37, Build Tools 36.0.0, NDK 27.2.12479018 and CMake 3.31.6 or a newer compatible version.
+
+1. Obtain your own `api_id` and `api_hash` at https://my.telegram.org/apps.
+2. Copy `local.properties.example` to `local.properties`.
+3. Set `TELEGRAM_APP_ID`, `TELEGRAM_APP_HASH` and your Android SDK path.
+4. Run `python build.py`.
+
+The default output is an ARM64 debug APK. Additional options:
+
+    python build.py --abi universal
+    python build.py --release
+
+Output: `client/TMessagesProj/build/outputs/apk/`.
+
+For Android Studio, run preparation first, open the `client` directory and select JDK 21.
+
+For custom signing, place your keystore at `client/TMessagesProj/release.keystore` and configure signing in `local.properties`. Without a custom keystore, the foundation uses debug signing, including for release builds.
+
+### Notifications
+
+For FCM, place your own `google-services.json` in the project root before preparation. Register `ua.potuzhnogram.messenger` as the Android application ID in Firebase.
+
+Without FCM configuration, background notification delivery depends on the client's other mechanisms and Android restrictions.
+
+### Plugins
+
+Open the plugin section in client settings, enable the engine and install a `.py` file.
+
+Example: `examples/potuzhno_hello.py`.
+
+The project inherits the exteraless permission model. Plugins relying on private classes or a different API version may require adaptation.
+
+### Project structure
+
+- `client` — Android foundation pinned as a Git submodule.
+- `patches` — PotuzhnoGram source modifications.
+- `overlay` — icons, themes and ringtone.
+- `branding` — visual previews.
+- `examples` — example plugin.
+- `prepare.py` — source preparation.
+- `build.py` — local build launcher.
+
+### Credits and licensing
+
+Based on [exteraless](https://github.com/exteraless/exteraless), an open-source NagramX fork. Thanks to the authors of Telegram, NagramX, Nagram, Nekogram, exteraGram, AyuGram and other upstream components.
+
+Inherited exteraGram design credits: @the8055u and @BlueprintDsgn. The original upstream description is preserved in `UPSTREAM.md`.
+
+The upstream GPL-3.0 license is preserved in `LICENSE`. Third-party components retain their respective licenses. The audio recording is not relicensed under GPL; its rights remain with the respective rights holders.
+
+PotuzhnoGram is not an official Telegram application.
