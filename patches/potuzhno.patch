@@ -1,0 +1,387 @@
+diff --git a/TMessagesProj/build.gradle b/TMessagesProj/build.gradle
+index a1e62005..15c7604c 100644
+--- a/TMessagesProj/build.gradle
++++ b/TMessagesProj/build.gradle
+@@ -3,13 +3,17 @@ import org.gradle.internal.os.OperatingSystem
+ 
+ plugins {
+     id 'com.android.application'
+-    id 'com.google.gms.google-services'
+-    id 'com.google.firebase.crashlytics'
++    // Firebase config is optional for local builds.
++    // Crash reporting is not configured for PotuzhnoGram.
+     id 'com.chaquo.python'
+     id 'org.telegram.lottie-meta'
+     id 'idea'
+ }
+ 
++if (file('google-services.json').exists()) {
++    apply plugin: 'com.google.gms.google-services'
++}
++
+ idea {
+     module {
+         excludeDirs += [
+@@ -154,13 +158,13 @@ android {
+         }
+ 
+         // obtain your own keys at https://core.telegram.org/api/obtaining_api_id
+-        def appId = '6'
+-        def appHash = 'eb06d4abfb49dc3eeb1aeb98ae0f581e'
++        def appId = System.getenv('TELEGRAM_APP_ID') ?: '0'
++        def appHash = System.getenv('TELEGRAM_APP_HASH') ?: ''
+ 
+         // obtain your own key at https://developers.google.com/maps/documentation/android-sdk/get-api-key
+         // Android keys are restricted by package name and signing certificate,
+         // so a key taken from another build shows an empty map.
+-        def mapsKey = 'AIzaSyDE_x6GRKJCSfCY33soBYUQ2piYsgjVpVE'
++        def mapsKey = ''
+ 
+         // Nothing Glyph SDK. «test» — отладочный ключ из Glyph Developer Kit, боевой
+         // запрашивается у Nothing под package name приложения.
+@@ -176,6 +180,9 @@ android {
+             glyphKey = System.getenv('GLYPH_API_KEY') ?: glyphKey
+         }
+ 
++        if (!(appId ==~ /[1-9][0-9]*/) || !(appHash ==~ /[a-fA-F0-9]{32}/)) {
++            throw new GradleException('Set your TELEGRAM_APP_ID and TELEGRAM_APP_HASH in local.properties. See PotuzhnoGram README.')
++        }
+         manifestPlaceholders += [MAPS_API_KEY: mapsKey, GLYPH_API_KEY: glyphKey]
+ 
+         buildConfigField 'String', 'BUILD_VERSION_STRING', '"' + APP_VERSION_NAME + '"'
+@@ -278,7 +285,7 @@ android {
+ androidComponents {
+     onVariants(selector().all()) { variant ->
+         variant.outputs.forEach { output ->
+-            String gramName = 'exteraless'
++            String gramName = 'PotuzhnoGram'
+             String first = String.format('%s-v%s(%s)', gramName, verName, verCode)
+             output.outputFileName.set(
+                 output.outputFileName.get()
+diff --git a/TMessagesProj/src/main/AndroidManifest.xml b/TMessagesProj/src/main/AndroidManifest.xml
+index 4730cc5e..d4c7740e 100644
+--- a/TMessagesProj/src/main/AndroidManifest.xml
++++ b/TMessagesProj/src/main/AndroidManifest.xml
+@@ -113,13 +113,13 @@
+         android:restoreAnyVersion="true"
+         android:backupAgent=".BackupAgent"
+         android:hardwareAccelerated="true"
+-        android:icon="@mipmap/ic_launcher_exteraless"
++        android:icon="@mipmap/ic_launcher_potuzhno"
+         android:label="@string/NagramX"
+         android:largeHeap="true"
+         android:theme="@style/Theme.TMessages.Start"
+         android:manageSpaceActivity="org.telegram.ui.ExternalActionActivity"
+         android:networkSecurityConfig="@xml/network_security_config"
+-        android:roundIcon="@mipmap/ic_launcher_exteraless_round"
++        android:roundIcon="@mipmap/ic_launcher_potuzhno"
+         android:supportsRtl="false"
+         android:requestLegacyExternalStorage="true"
+         android:hasFragileUserData="true"
+@@ -138,8 +138,8 @@
+             android:enabled="true"
+             android:name="org.telegram.messenger.ExteralessIcon"
+             android:targetActivity="org.telegram.ui.LaunchActivity"
+-            android:icon="@mipmap/ic_launcher_exteraless"
+-            android:roundIcon="@mipmap/ic_launcher_exteraless_round"
++            android:icon="@mipmap/ic_launcher_potuzhno"
++            android:roundIcon="@mipmap/ic_launcher_potuzhno"
+             android:exported="true">
+ 
+             <intent-filter>
+@@ -492,13 +492,13 @@
+                 <data android:host="www.keepassdx.com" android:scheme="http" />
+                 <data android:host="www.keepassdx.com" android:scheme="https" />
+             </intent-filter>
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round" android:priority="1">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno" android:priority="1">
+                 <action android:name="android.intent.action.VIEW"/>
+                 <category android:name="android.intent.category.DEFAULT" />
+                 <category android:name="android.intent.category.BROWSABLE" />
+                 <data android:scheme="tonsite" />
+             </intent-filter>
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round" android:priority="1">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno" android:priority="1">
+                 <action android:name="android.intent.action.VIEW" />
+                 <category android:name="android.intent.category.BROWSABLE" />
+                 <category android:name="android.intent.category.DEFAULT" />
+@@ -563,7 +563,7 @@
+             android:stateNotNeeded="true"
+             android:theme="@style/Theme.TMessages.Transparent"
+             android:exported="true">
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round" android:priority="1">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno" android:priority="1">
+                 <action android:name="android.intent.action.VIEW" />
+                 <category android:name="android.intent.category.BROWSABLE" />
+                 <category android:name="android.intent.category.DEFAULT" />
+@@ -576,7 +576,7 @@
+             android:hardwareAccelerated="true"
+             android:windowSoftInputMode="adjustPan"
+             android:exported="true">
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno">
+                 <action android:name="org.telegram.passport.AUTHORIZE"/>
+                 <category android:name="android.intent.category.DEFAULT"/>
+             </intent-filter>
+@@ -587,7 +587,7 @@
+             android:hardwareAccelerated="true"
+             android:windowSoftInputMode="adjustPan"
+             android:exported="true">
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno">
+                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+             </intent-filter>
+         </activity>
+@@ -597,7 +597,7 @@
+             android:hardwareAccelerated="true"
+             android:windowSoftInputMode="adjustPan"
+             android:exported="true">
+-            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round">
++            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno">
+                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+             </intent-filter>
+         </activity>
+@@ -606,7 +606,7 @@
+ <!--            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"-->
+ <!--            android:hardwareAccelerated="true"-->
+ <!--            android:windowSoftInputMode="adjustPan">-->
+-<!--            <intent-filter android:icon="@mipmap/ic_launcher_exteraless" android:roundIcon="@mipmap/ic_launcher_exteraless_round">-->
++<!--            <intent-filter android:icon="@mipmap/ic_launcher_potuzhno" android:roundIcon="@mipmap/ic_launcher_potuzhno">-->
+ <!--                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>-->
+ <!--            </intent-filter>-->
+ <!--        </activity>-->
+diff --git a/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java b/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
+index dca1ba86..a889f643 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
++++ b/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
+@@ -44,7 +44,7 @@ import xyz.nextalone.nagram.NaConfig;
+ 
+ public final class GitHubUpdater {
+ 
+-    private static final String REPO = "exteraless/exteraless";
++    private static final String REPO = "ArtemJabko/PotuzhnoGram";
+     public static final String RELEASES_URL = "https://github.com/" + REPO + "/releases";
+     private static final String API = "https://api.github.com/repos/" + REPO;
+     private static final long AUTO_INTERVAL = TimeUnit.HOURS.toMillis(6);
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
+index 594f8c9c..3d05f780 100644
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
+@@ -315,7 +315,7 @@ public class VoIPPreNotificationService { // } extends Service implements AudioM
+                     Uri ringtoneUri;
+                     boolean isDafaultUri = false;
+                     if (notificationUri == null) {
+-                        ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
++                        ringtoneUri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/potuzhno_ringtone");
+                         isDafaultUri = true;
+                     } else {
+                         Uri defaultUri = Settings.System.DEFAULT_RINGTONE_URI;
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
+index 8064106e..6157f0a7 100755
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
+@@ -4085,7 +4085,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
+ 					Uri ringtoneUri;
+ 					boolean isDafaultUri = false;
+ 					if (notificationUri == null) {
+-						ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
++						ringtoneUri = Uri.parse("android.resource://" + this.getPackageName() + "/raw/potuzhno_ringtone");
+ 						isDafaultUri = true;
+ 					} else {
+ 						Uri defaultUri = Settings.System.DEFAULT_RINGTONE_URI;
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
+index 061aa535..46ceaa7c 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
+@@ -4118,6 +4118,31 @@ public class Theme {
+             themesDict.put("Monet AMOLED", themeInfo);
+         }
+ 
++
++        themeInfo = new ThemeInfo();
++        themeInfo.name = "Потужно • День";
++        themeInfo.assetName = "potuzhno_day.attheme";
++        themeInfo.isDark = ThemeInfo.LIGHT;
++        themeInfo.previewBackgroundColor = 0xfff2f6fc;
++        themeInfo.previewInColor = 0xffffffff;
++        themeInfo.previewOutColor = 0xffffedac;
++        themeInfo.sortIndex = -2;
++        themes.add(themeInfo);
++        themesDict.put(themeInfo.name, themeInfo);
++
++
++        themeInfo = new ThemeInfo();
++        themeInfo.name = "Потужно • Ніч";
++        themeInfo.assetName = "potuzhno_night.attheme";
++        themeInfo.isDark = ThemeInfo.DARK;
++        themeInfo.previewBackgroundColor = 0xff101d32;
++        themeInfo.previewInColor = 0xff192b46;
++        themeInfo.previewOutColor = 0xff224b78;
++        themeInfo.sortIndex = -1;
++        themes.add(themeInfo);
++        themesDict.put(themeInfo.name, themeInfo);
++        currentNightTheme = themeInfo;
++
+         String themesString = themeConfig.getString("themes2", null);
+ 
+         int remoteVersion = themeConfig.getInt("remote_version", 0);
+@@ -4395,7 +4420,8 @@ public class Theme {
+             // throw new RuntimeException(e);
+         }
+         if (applyingTheme == null) {
+-            applyingTheme = defaultTheme;
++            applyingTheme = themesDict.get("Потужно • День");
++            currentDayTheme = applyingTheme;
+         } else {
+             currentDayTheme = applyingTheme;
+         }
+diff --git a/TMessagesProj/src/main/res/values-ar/strings.xml b/TMessagesProj/src/main/res/values-ar/strings.xml
+index 368579c9..abedc73a 100644
+--- a/TMessagesProj/src/main/res/values-ar/strings.xml
++++ b/TMessagesProj/src/main/res/values-ar/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">(Beta) تيليجرام</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">العربية</string>
+     <string name="English">الإنجليزية</string>
+     <string name="LanguageNameInEnglish">Arabic</string>
+diff --git a/TMessagesProj/src/main/res/values-de/strings.xml b/TMessagesProj/src/main/res/values-de/strings.xml
+index 76733b70..cc5b3625 100644
+--- a/TMessagesProj/src/main/res/values-de/strings.xml
++++ b/TMessagesProj/src/main/res/values-de/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">Telegram Beta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">Deutsch</string>
+     <string name="English">Englisch</string>
+     <string name="LanguageNameInEnglish">German</string>
+diff --git a/TMessagesProj/src/main/res/values-es/strings.xml b/TMessagesProj/src/main/res/values-es/strings.xml
+index f459414f..baece3d2 100644
+--- a/TMessagesProj/src/main/res/values-es/strings.xml
++++ b/TMessagesProj/src/main/res/values-es/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">Telegram Beta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">Español</string>
+     <string name="English">Inglés</string>
+     <string name="LanguageNameInEnglish">Spanish</string>
+diff --git a/TMessagesProj/src/main/res/values-it/strings.xml b/TMessagesProj/src/main/res/values-it/strings.xml
+index eb31dd4f..c9fad1e8 100644
+--- a/TMessagesProj/src/main/res/values-it/strings.xml
++++ b/TMessagesProj/src/main/res/values-it/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">Telegram Beta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">Italiano</string>
+     <string name="English">Inglese</string>
+     <string name="LanguageNameInEnglish">Italian</string>
+diff --git a/TMessagesProj/src/main/res/values-ko/strings.xml b/TMessagesProj/src/main/res/values-ko/strings.xml
+index 77e4b919..170ec67a 100644
+--- a/TMessagesProj/src/main/res/values-ko/strings.xml
++++ b/TMessagesProj/src/main/res/values-ko/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">텔레그램</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">한국어</string>
+     <string name="English">영어</string>
+     <string name="LanguageNameInEnglish">한국어</string>
+diff --git a/TMessagesProj/src/main/res/values-nl/strings.xml b/TMessagesProj/src/main/res/values-nl/strings.xml
+index 77dbef63..203ce2bf 100644
+--- a/TMessagesProj/src/main/res/values-nl/strings.xml
++++ b/TMessagesProj/src/main/res/values-nl/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">Telegram-bèta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">Nederlands</string>
+     <string name="English">Engels</string>
+     <string name="LanguageNameInEnglish">Dutch</string>
+diff --git a/TMessagesProj/src/main/res/values-pt-rBR/strings.xml b/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
+index 280d1954..a8d4c2c6 100644
+--- a/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
++++ b/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">Nagram X</string>
+-    <string name="AppNameBeta">Telegram Beta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">Português (Brasil)</string>
+     <string name="English">Inglês</string>
+     <string name="LanguageNameInEnglish">Portuguese (Brazil)</string>
+diff --git a/TMessagesProj/src/main/res/values/strings.xml b/TMessagesProj/src/main/res/values/strings.xml
+index d39ad329..46876d33 100644
+--- a/TMessagesProj/src/main/res/values/strings.xml
++++ b/TMessagesProj/src/main/res/values/strings.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="AppName">exteraless</string>
+-    <string name="AppNameBeta">Telegram Beta</string>
++    <string name="AppName">ПотужноGram</string>
++    <string name="AppNameBeta">ПотужноGram</string>
+     <string name="LanguageName">English</string>
+     <string name="English">English</string>
+     <string name="LanguageNameInEnglish">English</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_nax.xml b/TMessagesProj/src/main/res/values/strings_nax.xml
+index 2e4b8f16..b50d271c 100644
+--- a/TMessagesProj/src/main/res/values/strings_nax.xml
++++ b/TMessagesProj/src/main/res/values/strings_nax.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="NagramX" translatable="false">exteraless</string>
++    <string name="NagramX" translatable="false">ПотужноGram</string>
+     <string name="XChannel">Nagram X Channel</string>
+     <string name="EnableSaveDeletedMessages">Save Deleted Messages</string>
+     <string name="DeletedMessage">deleted</string>
+diff --git a/gradle.properties b/gradle.properties
+index 12b7b89a..b16ef3a1 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -15,7 +15,7 @@
+ #Sat Mar 12 05:53:50 MSK 2016
+ APP_VERSION_CODE=7175
+ APP_VERSION_NAME=13.0.2
+-APP_PACKAGE=com.exteraless.app
++APP_PACKAGE=ua.potuzhnogram.messenger
+ # Отладочный ключ Nothing Glyph SDK; боевой подставляется через GLYPH_API_KEY при сборке.
+ GLYPH_API_KEY=test
+ android.useAndroidX=true
+diff --git a/settings.gradle b/settings.gradle
+index 72f0e452..6176db7a 100644
+--- a/settings.gradle
++++ b/settings.gradle
+@@ -25,7 +25,7 @@ dependencyResolutionManagement {
+     }
+ }
+ 
+-rootProject.name = "exteraless"
++rootProject.name = "PotuzhnoGram"
+ include ':TMessagesProj'
+ 
+ gradle.ext.androidxMediaModulePrefix = 'TMessagesProj_Modules:media3:media-'

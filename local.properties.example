@@ -1,0 +1,13 @@
+# Get your own values from https://my.telegram.org/apps
+TELEGRAM_APP_ID=
+TELEGRAM_APP_HASH=
+# Android SDK path, or use ANDROID_HOME in your environment:
+# sdk.dir=/absolute/path/to/Android/Sdk
+# Optional: Python 3.11 executable for Chaquopy
+# CHAQUOPY_BUILD_PYTHON=/absolute/path/to/python3.11
+# Optional: put your keystore at client/TMessagesProj/release.keystore
+# KEYSTORE_PASS=
+# ALIAS_NAME=
+# ALIAS_PASS=
+# Optional Google Maps key restricted to your app:
+# MAPS_API_KEY=

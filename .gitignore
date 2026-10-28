@@ -1,0 +1,6 @@
+local.properties
+google-services.json
+*.keystore
+*.jks
+__pycache__/
+.idea/
