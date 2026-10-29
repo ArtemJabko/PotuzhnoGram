@@ -1,0 +1,81 @@
+name: PotuzhnoGram 12.10.6
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      NATIVE_TARGET: arm64-v8a
+      TELEGRAM_APP_ID: ${{ secrets.TELEGRAM_APP_ID }}
+      TELEGRAM_APP_HASH: ${{ secrets.TELEGRAM_APP_HASH }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+
+      - name: Install Android build dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends nasm ninja-build pkg-config
+          sdkmanager "platforms;android-37.0" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.31.6"
+          echo "CHAQUOPY_BUILD_PYTHON=$(command -v python)" >> "$GITHUB_ENV"
+          echo "$ANDROID_HOME/cmake/3.31.6/bin" >> "$GITHUB_PATH"
+
+      - name: Verify pinned source is 12.10.6
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          expected = "00c14f4c26e2cee39b2e966887f2edccd8de8893"
+          pin = json.loads(Path("upstream.json").read_text())["commit"]
+          actual = Path("client/.git").exists()
+          import subprocess
+          head = subprocess.check_output(
+              ["git", "-C", "client", "rev-parse", "HEAD"], text=True
+          ).strip()
+          if pin != expected or head != expected:
+              raise SystemExit(f"Expected 12.10.6 commit {expected}; pin={pin}, client={head}")
+          PY
+
+      - name: Prepare source
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          Path("local.properties").write_text(
+              "sdk.dir=" + os.environ["ANDROID_HOME"] + "\n"
+          )
+          PY
+          python prepare.py
+          python scripts/check.py
+
+      - name: Build ARM64 APK
+        run: python build.py --abi arm64-v8a
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PotuzhnoGram-12.10.6-arm64
+          path: client/TMessagesProj/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 7

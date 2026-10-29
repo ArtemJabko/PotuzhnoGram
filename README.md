@@ -189,3 +189,55 @@ Inherited exteraGram design credits: @the8055u and @BlueprintDsgn. The original 
 The upstream GPL-3.0 license is preserved in `LICENSE`. Third-party components retain their respective licenses. The audio recording is not relicensed under GPL; its rights remain with the respective rights holders.
 
 PotuzhnoGram is not an official Telegram application.
+
+
+## PotuznoGram branding update
+
+The default branch is `main`, pinned to Telegram 12.10.6. The visible app name is
+PotuznoGram; the Android package remains `ua.potuzhnogram.messenger`, preserving
+app data when upgrading with the same signing key. Channel: https://t.me/PotuznoGram.
+
+Five Ukrainian icon styles are available in Chat Settings → App Icon: PotuznoGram,
+Вишиванка, Соняшник, Піксель and Льодяник. Original icon choices remain available.
+The PotuznoGram icon is also used in Preferences, onboarding and the updater.
+The two Потужно themes use a yellow-and-blue palette and include the supplied
+photo as their bundled chat wallpaper.
+Select Потужно • День or Потужно • Ніч in Chat Settings to use them. Chat-specific
+wallpapers still take precedence, as in Telegram.
+
+`python3.11 prepare.py` supports upgrading the previous 12.10.6 branding in place.
+It replaces only recognized original assets and refuses conflicting local edits.
+Keep your `local.properties`, signing keys and any local changes. Do not reset the
+client or remove those files to resolve a preparation conflict.
+
+Host checks: `python3.11 scripts/check.py` and `python3.11 scripts/check_branding.py`.
+These do not replace an APK build and an emulator/device test.
+The vector artwork is in `branding/icons`; density assets can be regenerated with
+`python scripts/generate_branding.py` (host dependency: cairosvg).
+
+
+### Readability update
+The day/night themes now inherit complete bundled palettes, including chat-list,
+media and glass-navigation colours. Native theme contrast checks are available via
+`python scripts/check_contrast.py`. The default chat-list title uses PotuznoGram;
+explicit custom titles remain supported. The in-app logo has rounded transparent
+corners. Three extra vector icons: Потужний рейс, Вареник and Поштовий голуб.
+
+After installing this update, reselect Потужно • День or Потужно • Ніч if an older
+theme is still cached. Custom per-chat wallpapers retain their existing behaviour.
+
+
+### ПотужноМетр and wallpaper fix
+Preferences → ПотужноМетр opens an offline playful meter. Hold to charge it;
+release to pause. At full power it plays an original explosion effect. Tap to
+reset. The sound toggle uses media volume; playback stops on leaving the screen.
+This is a joke simulator, not a radiation measurement device. No sensors,
+microphone or network are used.
+
+Photo themes use v4 assets without `chat_wallpaper` colour keys, which otherwise
+take precedence over embedded JPEGs. Existing per-chat wallpaper overrides are
+preserved. Reselect the Потужно day/night theme after updating if necessary.
+
+Before publishing an APK, test on a phone: hold/release/cancel, finish/reset,
+mute, leave the page during playback, background the app, rotate the device,
+and check both photo themes. Host checks do not validate an Android build.

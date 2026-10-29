@@ -1,4 +1,1 @@
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/potuzhno_icon_background"/>
-    <foreground><inset android:inset="18%" android:drawable="@mipmap/ic_launcher_potuzhno_foreground"/></foreground>
-</adaptive-icon>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"><background android:drawable="@drawable/potuzno_default_background"/><foreground android:drawable="@drawable/potuzno_default_foreground"/></adaptive-icon>

@@ -1,5 +1,5 @@
 diff --git a/TMessagesProj/build.gradle b/TMessagesProj/build.gradle
-index a1e62005..15c7604c 100644
+index eca05de82..5d7f9f544 100644
 --- a/TMessagesProj/build.gradle
 +++ b/TMessagesProj/build.gradle
 @@ -3,13 +3,17 @@ import org.gradle.internal.os.OperatingSystem
@@ -59,10 +59,10 @@ index a1e62005..15c7604c 100644
              output.outputFileName.set(
                  output.outputFileName.get()
 diff --git a/TMessagesProj/src/main/AndroidManifest.xml b/TMessagesProj/src/main/AndroidManifest.xml
-index 4730cc5e..d4c7740e 100644
+index 043cda7c9..89008682e 100644
 --- a/TMessagesProj/src/main/AndroidManifest.xml
 +++ b/TMessagesProj/src/main/AndroidManifest.xml
-@@ -113,13 +113,13 @@
+@@ -112,13 +112,13 @@
          android:restoreAnyVersion="true"
          android:backupAgent=".BackupAgent"
          android:hardwareAccelerated="true"
@@ -78,7 +78,7 @@ index 4730cc5e..d4c7740e 100644
          android:supportsRtl="false"
          android:requestLegacyExternalStorage="true"
          android:hasFragileUserData="true"
-@@ -138,8 +138,8 @@
+@@ -137,8 +137,8 @@
              android:enabled="true"
              android:name="org.telegram.messenger.ExteralessIcon"
              android:targetActivity="org.telegram.ui.LaunchActivity"
@@ -89,7 +89,63 @@ index 4730cc5e..d4c7740e 100644
              android:exported="true">
  
              <intent-filter>
-@@ -492,13 +492,13 @@
+@@ -149,6 +149,55 @@
+             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts" />
+         </activity-alias>
+ 
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoVyshyvankaIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_vyshyvanka"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_vyshyvanka" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoSunflowerIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_sunflower"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_sunflower" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoPixelIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_pixel"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_pixel" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoCandyIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_candy"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_candy" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoBarrelIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_barrel"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_barrel" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoDumplingIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_dumpling"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_dumpling" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoPigeonIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_pigeon"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_pigeon" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
+         <activity-alias
+             android:enabled="false"
+             android:name="org.telegram.messenger.BlueprintIcon"
+@@ -491,13 +540,13 @@
                  <data android:host="www.keepassdx.com" android:scheme="http" />
                  <data android:host="www.keepassdx.com" android:scheme="https" />
              </intent-filter>
@@ -105,7 +161,7 @@ index 4730cc5e..d4c7740e 100644
                  <action android:name="android.intent.action.VIEW" />
                  <category android:name="android.intent.category.BROWSABLE" />
                  <category android:name="android.intent.category.DEFAULT" />
-@@ -563,7 +563,7 @@
+@@ -550,7 +599,7 @@
              android:stateNotNeeded="true"
              android:theme="@style/Theme.TMessages.Transparent"
              android:exported="true">
@@ -114,7 +170,7 @@ index 4730cc5e..d4c7740e 100644
                  <action android:name="android.intent.action.VIEW" />
                  <category android:name="android.intent.category.BROWSABLE" />
                  <category android:name="android.intent.category.DEFAULT" />
-@@ -576,7 +576,7 @@
+@@ -563,7 +612,7 @@
              android:hardwareAccelerated="true"
              android:windowSoftInputMode="adjustPan"
              android:exported="true">
@@ -123,7 +179,7 @@ index 4730cc5e..d4c7740e 100644
                  <action android:name="org.telegram.passport.AUTHORIZE"/>
                  <category android:name="android.intent.category.DEFAULT"/>
              </intent-filter>
-@@ -587,7 +587,7 @@
+@@ -574,7 +623,7 @@
              android:hardwareAccelerated="true"
              android:windowSoftInputMode="adjustPan"
              android:exported="true">
@@ -132,7 +188,7 @@ index 4730cc5e..d4c7740e 100644
                  <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
              </intent-filter>
          </activity>
-@@ -597,7 +597,7 @@
+@@ -584,7 +633,7 @@
              android:hardwareAccelerated="true"
              android:windowSoftInputMode="adjustPan"
              android:exported="true">
@@ -141,7 +197,7 @@ index 4730cc5e..d4c7740e 100644
                  <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
              </intent-filter>
          </activity>
-@@ -606,7 +606,7 @@
+@@ -593,7 +642,7 @@
  <!--            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"-->
  <!--            android:hardwareAccelerated="true"-->
  <!--            android:windowSoftInputMode="adjustPan">-->
@@ -150,8 +206,89 @@ index 4730cc5e..d4c7740e 100644
  <!--                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>-->
  <!--            </intent-filter>-->
  <!--        </activity>-->
+diff --git a/TMessagesProj/src/main/java/app/exteraless/settings/AboutHeaderCell.java b/TMessagesProj/src/main/java/app/exteraless/settings/AboutHeaderCell.java
+index f6f08657f..3d7a4bd82 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/settings/AboutHeaderCell.java
++++ b/TMessagesProj/src/main/java/app/exteraless/settings/AboutHeaderCell.java
+@@ -65,7 +65,7 @@ public class AboutHeaderCell extends LinearLayout {
+         };
+         logo.setScaleType(ImageView.ScaleType.CENTER_CROP);
+         logo.setBackgroundColor(LOGO_BACKGROUND);
+-        logo.setImageResource(R.drawable.exteraless_icon);
++        logo.setImageResource(R.drawable.potuzno_default);
+         logo.setOnLongClickListener(v -> {
+             IconPacksConfig.toggleSystemIconShape();
+             IconShapeHelper.invalidate();
+diff --git a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraOtherActivity.java b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraOtherActivity.java
+index ce394d807..9e70266c0 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraOtherActivity.java
++++ b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraOtherActivity.java
+@@ -196,8 +196,10 @@ public class OpenExteraOtherActivity extends BaseNekoSettingsActivity {
+             if (view instanceof TextCheckCell) {
+                 ((TextCheckCell) view).setChecked(enabled);
+             }
+-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(
+-                    AndroidUtil.shouldEnableCrashlytics());
++            if (!com.google.firebase.FirebaseApp.getApps(getParentActivity()).isEmpty()) {
++                FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(
++                        AndroidUtil.shouldEnableCrashlytics());
++            }
+         } else if (position == contentCaptureRow) {
+             toggleCheck(view, GeneralConfig.contentCapture);
+             GeneralHelper.applyContentCapture(getParentActivity());
+diff --git a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
+index cb86c471a..1143332c1 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
++++ b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
+@@ -37,6 +37,7 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+     private int chatsRow;
+     private int pluginsRow;
+     private int otherRow;
++    private int potuzhnoMeterRow;
+     private int categoriesDividerRow;
+ 
+     private int linksHeaderRow;
+@@ -61,6 +62,7 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+         chatsRow = addRow("chats");
+         pluginsRow = addRow("plugins");
+         otherRow = addRow("other");
++        potuzhnoMeterRow = addRow("potuzhnoMeter");
+         categoriesDividerRow = addRow();
+ 
+         linksHeaderRow = addRow("linksHeader");
+@@ -185,11 +187,13 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+             presentFragment(new app.exteraless.plugins.ui.PluginsActivity());
+         } else if (position == otherRow) {
+             presentFragment(new OpenExteraOtherActivity());
++        } else if (position == potuzhnoMeterRow) {
++            presentFragment(new PotuzhnoMeterActivity());
+         } else if (position == channelRow) {
+-            getMessagesController().openByUserName("exteraless", this, 1);
++            getMessagesController().openByUserName("PotuznoGram", this, 1);
+         } else if (position == sourceRow) {
+             org.telegram.messenger.browser.Browser.openUrl(getParentActivity(),
+-                    "https://github.com/exteraless/exteraless");
++                    "https://github.com/ArtemJabko/PotuzhnoGram");
+         } else if (position == designerRow) {
+             getMessagesController().openByUserName("the8055u", this, 1);
+         } else if (position == designStudioRow) {
+@@ -242,10 +246,12 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+                     } else if (position == pluginsRow) {
+                         cell.setTextAndIcon(getString(R.string.OpenExteraPlugins), R.drawable.msg_plugins, true);
+                     } else if (position == otherRow) {
+-                        cell.setTextAndIcon(getString(R.string.OpenExteraOther), R.drawable.msg_fave, false);
++                        cell.setTextAndIcon(getString(R.string.OpenExteraOther), R.drawable.msg_fave, true);
++                    } else if (position == potuzhnoMeterRow) {
++                        cell.setTextAndIcon("ПотужноМетр", R.drawable.msg_fave, false);
+                     } else if (position == channelRow) {
+                         cell.setTextAndValueAndIcon(getString(R.string.ProfileChannel),
+-                                "@exteraless", R.drawable.msg_channel, true);
++                                "@PotuznoGram", R.drawable.msg_channel, true);
+                     } else if (position == sourceRow) {
+                         cell.setTextAndValueAndIcon(getString(R.string.OpenExteraSource),
+                                 "GitHub", R.drawable.msg_language, false);
 diff --git a/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java b/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
-index dca1ba86..a889f643 100644
+index dca1ba86e..a889f6433 100644
 --- a/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
 +++ b/TMessagesProj/src/main/java/app/exteraless/updater/GitHubUpdater.java
 @@ -44,7 +44,7 @@ import xyz.nextalone.nagram.NaConfig;
@@ -163,8 +300,75 @@ index dca1ba86..a889f643 100644
      public static final String RELEASES_URL = "https://github.com/" + REPO + "/releases";
      private static final String API = "https://api.github.com/repos/" + REPO;
      private static final long AUTO_INTERVAL = TimeUnit.HOURS.toMillis(6);
+diff --git a/TMessagesProj/src/main/java/app/exteraless/updater/UpdaterSheet.java b/TMessagesProj/src/main/java/app/exteraless/updater/UpdaterSheet.java
+index 2694e93bd..bf217006c 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/updater/UpdaterSheet.java
++++ b/TMessagesProj/src/main/java/app/exteraless/updater/UpdaterSheet.java
+@@ -243,7 +243,7 @@ public class UpdaterSheet extends BottomSheet {
+         };
+         logo.setScaleType(ImageView.ScaleType.CENTER_CROP);
+         logo.setBackgroundColor(AboutHeaderCell.LOGO_BACKGROUND);
+-        logo.setImageResource(R.drawable.exteraless_icon);
++        logo.setImageResource(R.drawable.potuzno_default);
+         return logo;
+     }
+ 
+diff --git a/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java b/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
+index dc9300c43..a7d094220 100644
+--- a/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
++++ b/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
+@@ -198,7 +198,7 @@ public abstract class LocaleUtils {
+         try {
+             return ApplicationLoader.applicationContext.getString(R.string.OpenExtera);
+         } catch (Exception e) {
+-            return "exteraless";
++            return "PotuznoGram";
+         }
+     }
+ 
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/ApplicationLoader.java b/TMessagesProj/src/main/java/org/telegram/messenger/ApplicationLoader.java
+index 1f2da225b..1f36c94a6 100644
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/ApplicationLoader.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/ApplicationLoader.java
+@@ -307,7 +307,9 @@ public class ApplicationLoader extends Application implements CameraXConfig.Prov
+             app.exteraless.debug.EnergyProfiler.resumeIfEnabled(applicationContext);
+         }
+         SharedPrefsHelper.init(applicationContext);
+-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(AndroidUtil.shouldEnableCrashlytics());
++        if (!com.google.firebase.FirebaseApp.getApps(applicationContext).isEmpty()) {
++            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(AndroidUtil.shouldEnableCrashlytics());
++        }
+         for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) { //TODO improve account
+             UserConfig.getInstance(a).loadConfig();
+             MessagesController.getInstance(a);
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java b/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
+index d637eac4b..1b188b722 100644
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
+@@ -1473,7 +1473,7 @@ public class LocaleController {
+         try {
+             return ApplicationLoader.applicationContext.getString(R.string.OpenExtera);
+         } catch (Exception ignore) {
+-            return "exteraless";
++            return "PotuznoGram";
+         }
+     }
+ 
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/TelegramQRCodeWriter.java b/TMessagesProj/src/main/java/org/telegram/messenger/TelegramQRCodeWriter.java
+index 262820def..8971434fb 100755
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/TelegramQRCodeWriter.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/TelegramQRCodeWriter.java
+@@ -223,7 +223,7 @@ public final class TelegramQRCodeWriter {
+             canvas.drawBitmap(icon, imageX, imageX, null);
+             icon.recycle();
+         } else {
+-            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.exteraless_icon);
++            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.potuzno_default);
+             drawable.setBounds(imageX, imageX, imageX + imageSize, imageX + imageSize);
+             drawable.draw(canvas);
+         }
 diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
-index 594f8c9c..3d05f780 100644
+index 594f8c9c3..3d05f7804 100644
 --- a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
 +++ b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPPreNotificationService.java
 @@ -315,7 +315,7 @@ public class VoIPPreNotificationService { // } extends Service implements AudioM
@@ -177,10 +381,10 @@ index 594f8c9c..3d05f780 100644
                      } else {
                          Uri defaultUri = Settings.System.DEFAULT_RINGTONE_URI;
 diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
-index 8064106e..6157f0a7 100755
+index 48df1c7dd..ba9424d36 100755
 --- a/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
 +++ b/TMessagesProj/src/main/java/org/telegram/messenger/voip/VoIPService.java
-@@ -4085,7 +4085,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
+@@ -4086,7 +4086,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
  					Uri ringtoneUri;
  					boolean isDafaultUri = false;
  					if (notificationUri == null) {
@@ -190,17 +394,17 @@ index 8064106e..6157f0a7 100755
  					} else {
  						Uri defaultUri = Settings.System.DEFAULT_RINGTONE_URI;
 diff --git a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
-index 061aa535..46ceaa7c 100644
+index 5b9192b37..e23cbc684 100644
 --- a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
 +++ b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
-@@ -4118,6 +4118,31 @@ public class Theme {
+@@ -4112,6 +4112,31 @@ public class Theme {
              themesDict.put("Monet AMOLED", themeInfo);
          }
  
 +
 +        themeInfo = new ThemeInfo();
 +        themeInfo.name = "Потужно • День";
-+        themeInfo.assetName = "potuzhno_day.attheme";
++        themeInfo.assetName = "potuzhno_day_v4.attheme";
 +        themeInfo.isDark = ThemeInfo.LIGHT;
 +        themeInfo.previewBackgroundColor = 0xfff2f6fc;
 +        themeInfo.previewInColor = 0xffffffff;
@@ -212,7 +416,7 @@ index 061aa535..46ceaa7c 100644
 +
 +        themeInfo = new ThemeInfo();
 +        themeInfo.name = "Потужно • Ніч";
-+        themeInfo.assetName = "potuzhno_night.attheme";
++        themeInfo.assetName = "potuzhno_night_v4.attheme";
 +        themeInfo.isDark = ThemeInfo.DARK;
 +        themeInfo.previewBackgroundColor = 0xff101d32;
 +        themeInfo.previewInColor = 0xff192b46;
@@ -225,7 +429,7 @@ index 061aa535..46ceaa7c 100644
          String themesString = themeConfig.getString("themes2", null);
  
          int remoteVersion = themeConfig.getInt("remote_version", 0);
-@@ -4395,7 +4420,8 @@ public class Theme {
+@@ -4389,7 +4414,8 @@ public class Theme {
              // throw new RuntimeException(e);
          }
          if (applyingTheme == null) {
@@ -235,8 +439,69 @@ index 061aa535..46ceaa7c 100644
          } else {
              currentDayTheme = applyingTheme;
          }
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/IntroActivity.java b/TMessagesProj/src/main/java/org/telegram/ui/IntroActivity.java
+index e0299359b..7f798eee6 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/IntroActivity.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/IntroActivity.java
+@@ -727,7 +727,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
+             Bitmap icon = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+             Canvas iconCanvas = new Canvas(icon);
+             Resources resources = getParentActivity().getResources();
+-            for (int resId : new int[]{R.drawable.exteraless_icon_background, R.drawable.exteraless_icon_foreground}) {
++            for (int resId : new int[]{R.drawable.potuzno_default_background, R.drawable.potuzno_default_foreground}) {
+                 Drawable layer = resources.getDrawable(resId);
+                 if (layer == null) {
+                     continue;
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java b/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
+index 7c84e3c22..83bc9018a 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
+@@ -38,8 +38,15 @@ public class LauncherIconController {
+     }
+ 
+     public enum LauncherIcon {
+-        EXTERALESS("ExteralessIcon", R.drawable.exteraless_icon_background,
+-                R.drawable.exteraless_icon_foreground, R.string.AppIconExteraless),
++        EXTERALESS("ExteralessIcon", R.drawable.potuzno_default_background,
++                R.drawable.potuzno_default_foreground, R.string.AppIconExteraless),
++        POTUZNO_VYSHYVANKA("PotuznoVyshyvankaIcon", R.drawable.potuzno_vyshyvanka_background, R.drawable.potuzno_vyshyvanka_foreground, R.string.PotuznoIconVyshyvanka),
++        POTUZNO_SUNFLOWER("PotuznoSunflowerIcon", R.drawable.potuzno_sunflower_background, R.drawable.potuzno_sunflower_foreground, R.string.PotuznoIconSunflower),
++        POTUZNO_PIXEL("PotuznoPixelIcon", R.drawable.potuzno_pixel_background, R.drawable.potuzno_pixel_foreground, R.string.PotuznoIconPixel),
++        POTUZNO_CANDY("PotuznoCandyIcon", R.drawable.potuzno_candy_background, R.drawable.potuzno_candy_foreground, R.string.PotuznoIconCandy),
++        POTUZNO_BARREL("PotuznoBarrelIcon", R.drawable.potuzno_barrel_background, R.drawable.potuzno_barrel_foreground, R.string.PotuznoIconBarrel),
++        POTUZNO_DUMPLING("PotuznoDumplingIcon", R.drawable.potuzno_dumpling_background, R.drawable.potuzno_dumpling_foreground, R.string.PotuznoIconDumpling),
++        POTUZNO_PIGEON("PotuznoPigeonIcon", R.drawable.potuzno_pigeon_background, R.drawable.potuzno_pigeon_foreground, R.string.PotuznoIconPigeon),
+         BLUEPRINT("BlueprintIcon", R.drawable.blueprint_icon_background,
+                 R.drawable.blueprint_icon_foreground, R.string.AppIconBlueprint),
+         RED("RedIcon", R.drawable.red_icon_background,
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/SettingsActivity.java b/TMessagesProj/src/main/java/org/telegram/ui/SettingsActivity.java
+index 1b5cbd76e..7019723f4 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/SettingsActivity.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/SettingsActivity.java
+@@ -779,7 +779,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
+         }
+         // Как в exteraGram 12.9.0 (SettingsActivity.java:899): знак приложения вместо
+         // шестерёнки, акцент фирменного цвета на обе точки градиента.
+-        items.add(SettingCell.Factory.of(-1, 0xFF993C38, 0xFF993C38, R.drawable.exteraless_icon_tile, getString(R.string.OpenExteraPreferences), getString(R.string.OpenExteraInfo)));
++        items.add(SettingCell.Factory.of(-1, 0xFF0057B7, 0xFF0057B7, R.drawable.potuzno_default, getString(R.string.OpenExteraPreferences), getString(R.string.OpenExteraInfo)));
+         items.add(UItem.asShadow(null));
+ 
+         items.add(SettingCell.Factory.of(1, IconBackgroundColors.BLUE.top, IconBackgroundColors.BLUE.bottom, R.drawable.settings_account, getString(R.string.SettingsAccount), getString(R.string.SettingsAccountInfo)));
+diff --git a/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java b/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
+index f0aa701ea..3e7f8ece5 100644
+--- a/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
++++ b/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
+@@ -316,7 +316,7 @@ public class TypefaceHelper {
+     }
+ 
+     public static SpannableStringBuilder getTitleText(int currentAccount) {
+-        String title = (String) NaConfig.INSTANCE.getCustomTitle().defaultValue;
++        String title = LocaleController.getAppName();
+         // openExtera: заголовок списка чатов (AppearanceConfig.titleText).
+         // Перенесено из exteraGram 12.9.0, LocaleUtils.getActionBarTitle(int).
+         // 0 — имя приложения (NagramX customTitle), 1 — username, 2 — имя, 3 — «Чаты».
 diff --git a/TMessagesProj/src/main/res/values-ar/strings.xml b/TMessagesProj/src/main/res/values-ar/strings.xml
-index 368579c9..abedc73a 100644
+index 368579c91..83bc9f5e0 100644
 --- a/TMessagesProj/src/main/res/values-ar/strings.xml
 +++ b/TMessagesProj/src/main/res/values-ar/strings.xml
 @@ -1,7 +1,7 @@
@@ -244,13 +509,92 @@ index 368579c9..abedc73a 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">(Beta) تيليجرام</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">العربية</string>
      <string name="English">الإنجليزية</string>
      <string name="LanguageNameInEnglish">Arabic</string>
+diff --git a/TMessagesProj/src/main/res/values-ar/strings_oe.xml b/TMessagesProj/src/main/res/values-ar/strings_oe.xml
+index dadef4f01..32b08da01 100644
+--- a/TMessagesProj/src/main/res/values-ar/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values-ar/strings_oe.xml
+@@ -18,7 +18,7 @@
+     <string name="QrWifiPasswordCopied">تم نسخ كلمة المرور</string>
+     <string name="QrWifiUnknownNetwork">اسم الشبكة غير موجود في الرمز</string>
+     <string name="QrLoginHint">هذا الرمز يسجّل الدخول إلى حساب. استخدم الإعدادات ← الأجهزة ← ربط جهاز سطح المكتب، فهذه الشاشة تتحقق من الرمز وتحمي حسابك.</string>
+-    <string name="OpenExteraPreferences">تفضيلات exteraless</string>
++    <string name="OpenExteraPreferences">تفضيلات PotuznoGram</string>
+     <string name="OpenExteraDesignSection">التصميم</string>
+     <string name="OpenExteraDesigner">الأيقونات والتصميم</string>
+     <string name="OpenExteraDesignStudio">استوديو التصميم</string>
+diff --git a/TMessagesProj/src/main/res/values-ar/strings_oe_chats.xml b/TMessagesProj/src/main/res/values-ar/strings_oe_chats.xml
+index 8d7ceee1f..b19eceeb8 100644
+--- a/TMessagesProj/src/main/res/values-ar/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values-ar/strings_oe_chats.xml
+@@ -144,8 +144,8 @@
+     <string name="OEChatsInlineMathCurrency">العملات عبر @calcmulabot</string>
+     <string name="OEChatsInlineMathCurrencyInfo">تُرسل التعبيرات التي تحتوي على عملات مثل «10 usd to rub =» إلى @calcmulabot للحصول على سعر الصرف.</string>
+     <string name="OEChatsInlineMathAnnouncement">النتيجة: %1$s</string>
+-    <string name="OELocalPremiumInfo">تُرسل إيموجي Premium كروابط يعرضها exteraless والعملاء الآخرون الداعمون لذلك كإيموجي حقيقية. أما ميزات Premium الأخرى فتعمل على هذا الجهاز فقط.</string>
+-    <string name="OELocalPremiumEmojiHint">ليس لديك **Telegram Premium**، لذا سيُرسل هذا الإيموجي كرابط: سيراه فقط مستخدمو **exteraless** والعملاء الداعمون لذلك.</string>
++    <string name="OELocalPremiumInfo">تُرسل إيموجي Premium كروابط يعرضها PotuznoGram والعملاء الآخرون الداعمون لذلك كإيموجي حقيقية. أما ميزات Premium الأخرى فتعمل على هذا الجهاز فقط.</string>
++    <string name="OELocalPremiumEmojiHint">ليس لديك **Telegram Premium**، لذا سيُرسل هذا الإيموجي كرابط: سيراه فقط مستخدمو **PotuznoGram** والعملاء الداعمون لذلك.</string>
+     <string name="OEChatsSections">الأقسام</string>
+     <string name="OEChatsMenus">القوائم والأزرار</string>
+     <string name="OEChatsMenusInfo">قوائم المحادثة والرسائل وعارض الوسائط</string>
+diff --git a/TMessagesProj/src/main/res/values-ar/strings_oe_general.xml b/TMessagesProj/src/main/res/values-ar/strings_oe_general.xml
+index f60af90b9..05a6cf26a 100644
+--- a/TMessagesProj/src/main/res/values-ar/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values-ar/strings_oe_general.xml
+@@ -52,7 +52,7 @@
+     <string name="OEGeneralImportEtgDone">تم استيراد الإعدادات: %1$d</string>
+     <string name="OEGeneralResetSettings">إعادة تعيين الإعدادات</string>
+     <string name="OEGeneralResetSettingsInfo">ستُعاد جميع الإعدادات إلى قيمها الافتراضية وسيُعاد تشغيل التطبيق.</string>
+-    <string name="OEGeneralResetSettingsDone">تمت إعادة تعيين تفضيلات exteraless.</string>
++    <string name="OEGeneralResetSettingsDone">تمت إعادة تعيين تفضيلات PotuznoGram.</string>
+     <string name="OEGeneralDeleteAccount">حذف الحساب</string>
+     <string name="DeepLFormalityDefault">النبرة: كما هي</string>
+     <string name="DeepLFormalityInformal">النبرة: غير رسمية</string>
+@@ -94,7 +94,7 @@
+     <string name="OEGeneralMapProvider">مزوّد الخرائط</string>
+     <string name="OEGeneralMapPreview">معاينات المواقع</string>
+     <string name="OEGeneralMapDriftingFix">إصلاح انزياح الخريطة</string>
+-    <string name="OECrashTitle">تعطّل exteraless</string>
++    <string name="OECrashTitle">تعطّل PotuznoGram</string>
+     <string name="OEGeneralNetworkHeader">الشبكة</string>
+     <string name="OEPrivacyFalseBottom">القاع الزائف</string>
+     <string name="OEPrivacyFalseBottomShowIn">إظهار في %1$s</string>
+@@ -109,7 +109,7 @@
+     <string name="CloudConfigIncludeApiKeysDesc">تُرفع مفاتيح API لخدمات الذكاء الاصطناعي والترجمة إلى السحابة أيضًا.</string>
+     <string name="OECloudTitle">السحابة</string>
+     <string name="OECloudHeroTitle">الإعدادات في السحابة</string>
+-    <string name="OECloudHeroText">احتفظ بإعدادات exteraless في Telegram واستعدها على أي جهاز مسجّل الدخول إلى هذا الحساب.</string>
++    <string name="OECloudHeroText">احتفظ بإعدادات PotuznoGram في Telegram واستعدها على أي جهاز مسجّل الدخول إلى هذا الحساب.</string>
+     <string name="OECloudStatus">الحالة</string>
+     <string name="OECloudLocal">هذا الجهاز</string>
+     <string name="OECloudRemote">السحابة</string>
+@@ -171,7 +171,7 @@
+     <string name="OEAyuSaveInArchivedInfo">تُحفظ أيضًا الرسائل المحذوفة والمعدّلة من المحادثات المؤرشفة.</string>
+     <string name="OEAyuDatabaseExport">تصدير قاعدة البيانات</string>
+     <string name="OEAyuDatabaseImport">استيراد قاعدة البيانات</string>
+-    <string name="OEAyuDatabaseImportInfo">ستُضاف الرسائل المحذوفة والمعدّلة من هذا الملف إلى الرسائل المحفوظة. ملفات التصدير من exteraless وAyuGram مدعومة. قد لا تتوفر الوسائط من تطبيق آخر.</string>
++    <string name="OEAyuDatabaseImportInfo">ستُضاف الرسائل المحذوفة والمعدّلة من هذا الملف إلى الرسائل المحفوظة. ملفات التصدير من PotuznoGram وAyuGram مدعومة. قد لا تتوفر الوسائط من تطبيق آخر.</string>
+     <string name="OEAyuDatabaseImportDone">الرسائل المضافة: %1$d</string>
+     <string name="OEAyuDatabaseImportFailed">تعذّر استيراد هذا الملف</string>
+     <string name="OEAyuRegexReversed">عكسي</string>
+diff --git a/TMessagesProj/src/main/res/values-ar/strings_oe_glyph.xml b/TMessagesProj/src/main/res/values-ar/strings_oe_glyph.xml
+index 547c46ceb..b13517d7c 100644
+--- a/TMessagesProj/src/main/res/values-ar/strings_oe_glyph.xml
++++ b/TMessagesProj/src/main/res/values-ar/strings_oe_glyph.xml
+@@ -8,5 +8,5 @@
+     <string name="OEGlyphScreenOff">الرسائل فقط عندما تكون الشاشة مطفأة</string>
+     <string name="OEGlyphPreview">معاينة</string>
+     <string name="OEGlyphUnsupported">واجهة Glyph متاحة فقط على هواتف Nothing</string>
+-    <string name="OEGlyphInfo">تُضيء واجهة Glyph على ظهر هاتف Nothing: وميض للرسائل الواردة، وشعار exteraless على Glyph Matrix في Phone (3)، وتوهج متنفّس أثناء تسجيل الرسائل الصوتية أو استقبال مكالمة. المحادثات المكتومة لا تُطلق الوميض أبدًا.</string>
++    <string name="OEGlyphInfo">تُضيء واجهة Glyph على ظهر هاتف Nothing: وميض للرسائل الواردة، وشعار PotuznoGram على Glyph Matrix في Phone (3)، وتوهج متنفّس أثناء تسجيل الرسائل الصوتية أو استقبال مكالمة. المحادثات المكتومة لا تُطلق الوميض أبدًا.</string>
+ </resources>
 diff --git a/TMessagesProj/src/main/res/values-de/strings.xml b/TMessagesProj/src/main/res/values-de/strings.xml
-index 76733b70..cc5b3625 100644
+index 76733b70a..2ccbcda5f 100644
 --- a/TMessagesProj/src/main/res/values-de/strings.xml
 +++ b/TMessagesProj/src/main/res/values-de/strings.xml
 @@ -1,7 +1,7 @@
@@ -258,13 +602,13 @@ index 76733b70..cc5b3625 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">Telegram Beta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">Deutsch</string>
      <string name="English">Englisch</string>
      <string name="LanguageNameInEnglish">German</string>
 diff --git a/TMessagesProj/src/main/res/values-es/strings.xml b/TMessagesProj/src/main/res/values-es/strings.xml
-index f459414f..baece3d2 100644
+index f459414f0..cd8e60daf 100644
 --- a/TMessagesProj/src/main/res/values-es/strings.xml
 +++ b/TMessagesProj/src/main/res/values-es/strings.xml
 @@ -1,7 +1,7 @@
@@ -272,13 +616,72 @@ index f459414f..baece3d2 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">Telegram Beta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">Español</string>
      <string name="English">Inglés</string>
      <string name="LanguageNameInEnglish">Spanish</string>
+diff --git a/TMessagesProj/src/main/res/values-es/strings_oe.xml b/TMessagesProj/src/main/res/values-es/strings_oe.xml
+index 42e9f1abd..2b810b8d5 100644
+--- a/TMessagesProj/src/main/res/values-es/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values-es/strings_oe.xml
+@@ -18,7 +18,7 @@
+     <string name="QrWifiPasswordCopied">Contraseña copiada</string>
+     <string name="QrWifiUnknownNetwork">El código no incluye el nombre de la red</string>
+     <string name="QrLoginHint">Este código inicia sesión en una cuenta. Usa Ajustes → Dispositivos → Vincular dispositivo de escritorio: esa pantalla comprueba el código y protege tu cuenta.</string>
+-    <string name="OpenExteraPreferences">Ajustes de exteraless</string>
++    <string name="OpenExteraPreferences">Ajustes de PotuznoGram</string>
+     <string name="OpenExteraDesignSection">Diseño</string>
+     <string name="OpenExteraDesigner">Iconos y diseño</string>
+     <string name="OpenExteraDesignStudio">Estudio de diseño</string>
+diff --git a/TMessagesProj/src/main/res/values-es/strings_oe_chats.xml b/TMessagesProj/src/main/res/values-es/strings_oe_chats.xml
+index 0ea774da9..937eb6d23 100644
+--- a/TMessagesProj/src/main/res/values-es/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values-es/strings_oe_chats.xml
+@@ -140,8 +140,8 @@
+     <string name="OEChatsInlineMathCurrency">Divisas mediante @calcmulabot</string>
+     <string name="OEChatsInlineMathCurrencyInfo">Las expresiones con divisas, como «10 usd to rub =», se envían a @calcmulabot para obtener el tipo de cambio.</string>
+     <string name="OEChatsInlineMathAnnouncement">Resultado: %1$s</string>
+-    <string name="OELocalPremiumInfo">Los emoji premium se envían como enlaces que exteraless y otros clientes compatibles muestran como emoji reales. Las demás funciones Premium solo funcionan en este dispositivo.</string>
+-    <string name="OELocalPremiumEmojiHint">No tienes **Telegram Premium**, así que este emoji se envía como enlace: solo lo verán los usuarios de **exteraless** y clientes compatibles.</string>
++    <string name="OELocalPremiumInfo">Los emoji premium se envían como enlaces que PotuznoGram y otros clientes compatibles muestran como emoji reales. Las demás funciones Premium solo funcionan en este dispositivo.</string>
++    <string name="OELocalPremiumEmojiHint">No tienes **Telegram Premium**, así que este emoji se envía como enlace: solo lo verán los usuarios de **PotuznoGram** y clientes compatibles.</string>
+     <string name="OEChatsSections">Secciones</string>
+     <string name="OEChatsMenus">Menús y botones</string>
+     <string name="OEChatsMenusInfo">Menús del chat, de los mensajes y del visor</string>
+diff --git a/TMessagesProj/src/main/res/values-es/strings_oe_general.xml b/TMessagesProj/src/main/res/values-es/strings_oe_general.xml
+index 269b25d28..a8fdf5a80 100644
+--- a/TMessagesProj/src/main/res/values-es/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values-es/strings_oe_general.xml
+@@ -52,7 +52,7 @@
+     <string name="OEGeneralImportEtgDone">Ajustes importados: %1$d</string>
+     <string name="OEGeneralResetSettings">Restablecer ajustes</string>
+     <string name="OEGeneralResetSettingsInfo">Todos los ajustes volverán a sus valores predeterminados y la app se reiniciará.</string>
+-    <string name="OEGeneralResetSettingsDone">Se restablecieron los ajustes de exteraless.</string>
++    <string name="OEGeneralResetSettingsDone">Se restablecieron los ajustes de PotuznoGram.</string>
+     <string name="OEGeneralDeleteAccount">Eliminar cuenta</string>
+     <string name="DeepLFormalityDefault">Tono: como venga</string>
+     <string name="DeepLFormalityInformal">Tono: informal</string>
+@@ -94,7 +94,7 @@
+     <string name="OEGeneralMapProvider">Proveedor de mapas</string>
+     <string name="OEGeneralMapPreview">Vistas previas de ubicación</string>
+     <string name="OEGeneralMapDriftingFix">Corregir el desplazamiento del mapa</string>
+-    <string name="OECrashTitle">exteraless se cerró inesperadamente</string>
++    <string name="OECrashTitle">PotuznoGram se cerró inesperadamente</string>
+     <string name="OEGeneralNetworkHeader">Red</string>
+     <string name="OEPrivacyFalseBottom">Doble fondo</string>
+     <string name="OEPrivacyFalseBottomShowIn">Mostrar en %1$s</string>
+@@ -129,7 +129,7 @@
+     <string name="OEAyuSaveInArchivedInfo">También se guardan los mensajes eliminados y editados de los chats archivados.</string>
+     <string name="OEAyuDatabaseExport">Exportar base de datos</string>
+     <string name="OEAyuDatabaseImport">Importar base de datos</string>
+-    <string name="OEAyuDatabaseImportInfo">Los mensajes eliminados y editados de este archivo se añadirán a los ya guardados. Se admiten exportaciones de exteraless y AyuGram. Es posible que los archivos multimedia de otra app no estén disponibles.</string>
++    <string name="OEAyuDatabaseImportInfo">Los mensajes eliminados y editados de este archivo se añadirán a los ya guardados. Se admiten exportaciones de PotuznoGram y AyuGram. Es posible que los archivos multimedia de otra app no estén disponibles.</string>
+     <string name="OEAyuDatabaseImportDone">Mensajes añadidos: %1$d</string>
+     <string name="OEAyuDatabaseImportFailed">No se pudo importar este archivo</string>
+     <string name="OEAyuRegexReversed">Inverso</string>
 diff --git a/TMessagesProj/src/main/res/values-it/strings.xml b/TMessagesProj/src/main/res/values-it/strings.xml
-index eb31dd4f..c9fad1e8 100644
+index eb31dd4fb..f7200c34d 100644
 --- a/TMessagesProj/src/main/res/values-it/strings.xml
 +++ b/TMessagesProj/src/main/res/values-it/strings.xml
 @@ -1,7 +1,7 @@
@@ -286,13 +689,13 @@ index eb31dd4f..c9fad1e8 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">Telegram Beta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">Italiano</string>
      <string name="English">Inglese</string>
      <string name="LanguageNameInEnglish">Italian</string>
 diff --git a/TMessagesProj/src/main/res/values-ko/strings.xml b/TMessagesProj/src/main/res/values-ko/strings.xml
-index 77e4b919..170ec67a 100644
+index 77e4b9199..25c737dab 100644
 --- a/TMessagesProj/src/main/res/values-ko/strings.xml
 +++ b/TMessagesProj/src/main/res/values-ko/strings.xml
 @@ -1,7 +1,7 @@
@@ -300,13 +703,13 @@ index 77e4b919..170ec67a 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">텔레그램</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">한국어</string>
      <string name="English">영어</string>
      <string name="LanguageNameInEnglish">한국어</string>
 diff --git a/TMessagesProj/src/main/res/values-nl/strings.xml b/TMessagesProj/src/main/res/values-nl/strings.xml
-index 77dbef63..203ce2bf 100644
+index 77dbef631..7f0ed543d 100644
 --- a/TMessagesProj/src/main/res/values-nl/strings.xml
 +++ b/TMessagesProj/src/main/res/values-nl/strings.xml
 @@ -1,7 +1,7 @@
@@ -314,13 +717,72 @@ index 77dbef63..203ce2bf 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">Telegram-bèta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">Nederlands</string>
      <string name="English">Engels</string>
      <string name="LanguageNameInEnglish">Dutch</string>
+diff --git a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe.xml b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe.xml
+index 7ac70fb61..0985f5c1d 100644
+--- a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe.xml
+@@ -18,7 +18,7 @@
+     <string name="QrWifiPasswordCopied">Skopiowano hasło</string>
+     <string name="QrWifiUnknownNetwork">W kodzie brakuje nazwy sieci</string>
+     <string name="QrLoginHint">Ten kod loguje do konta. Skorzystaj z Ustawienia → Urządzenia → Podłącz komputer — tamten ekran weryfikuje kod i chroni Twoje konto.</string>
+-    <string name="OpenExteraPreferences">Ustawienia exteraless</string>
++    <string name="OpenExteraPreferences">Ustawienia PotuznoGram</string>
+     <string name="OpenExteraDesignSection">Projekt graficzny</string>
+     <string name="OpenExteraDesigner">Ikony i projekt graficzny</string>
+     <string name="OpenExteraDesignStudio">Studio projektowe</string>
+diff --git a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_chats.xml b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_chats.xml
+index b799fce0d..9271b2b01 100644
+--- a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_chats.xml
+@@ -140,8 +140,8 @@
+     <string name="OEChatsInlineMathCurrency">Waluty przez @calcmulabot</string>
+     <string name="OEChatsInlineMathCurrencyInfo">Wyrażenia z walutami, np. „10 usd to rub =”, są wysyłane do @calcmulabot po kurs.</string>
+     <string name="OEChatsInlineMathAnnouncement">Wynik: %1$s</string>
+-    <string name="OELocalPremiumInfo">Emoji premium są wysyłane jako linki, które exteraless i inne obsługujące to klienty wyświetlają jako prawdziwe emoji. Pozostałe funkcje Premium działają tylko na tym urządzeniu.</string>
+-    <string name="OELocalPremiumEmojiHint">Nie masz **Telegram Premium**, więc to emoji zostanie wysłane jako link: zobaczą je tylko użytkownicy **exteraless** i klientów, które to obsługują.</string>
++    <string name="OELocalPremiumInfo">Emoji premium są wysyłane jako linki, które PotuznoGram i inne obsługujące to klienty wyświetlają jako prawdziwe emoji. Pozostałe funkcje Premium działają tylko na tym urządzeniu.</string>
++    <string name="OELocalPremiumEmojiHint">Nie masz **Telegram Premium**, więc to emoji zostanie wysłane jako link: zobaczą je tylko użytkownicy **PotuznoGram** i klientów, które to obsługują.</string>
+     <string name="OEChatsSections">Sekcje</string>
+     <string name="OEChatsMenus">Menu i przyciski</string>
+     <string name="OEChatsMenusInfo">Menu czatu, wiadomości i przeglądarki multimediów</string>
+diff --git a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_general.xml b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_general.xml
+index d294920ac..2ccf3024d 100644
+--- a/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values-pl-rPL/strings_oe_general.xml
+@@ -52,7 +52,7 @@
+     <string name="OEGeneralImportEtgDone">Zaimportowane ustawienia: %1$d</string>
+     <string name="OEGeneralResetSettings">Zresetuj ustawienia</string>
+     <string name="OEGeneralResetSettingsInfo">Wszystkie ustawienia zostaną przywrócone do wartości domyślnych, a aplikacja uruchomi się ponownie.</string>
+-    <string name="OEGeneralResetSettingsDone">Ustawienia exteraless zostały zresetowane.</string>
++    <string name="OEGeneralResetSettingsDone">Ustawienia PotuznoGram zostały zresetowane.</string>
+     <string name="OEGeneralDeleteAccount">Usuń konto</string>
+     <string name="DeepLFormalityDefault">Ton: jak w oryginale</string>
+     <string name="DeepLFormalityInformal">Ton: nieformalny</string>
+@@ -94,7 +94,7 @@
+     <string name="OEGeneralMapProvider">Dostawca map</string>
+     <string name="OEGeneralMapPreview">Podglądy lokalizacji</string>
+     <string name="OEGeneralMapDriftingFix">Popraw przesunięcie mapy</string>
+-    <string name="OECrashTitle">exteraless uległ awarii</string>
++    <string name="OECrashTitle">PotuznoGram uległ awarii</string>
+     <string name="OEGeneralNetworkHeader">Sieć</string>
+     <string name="OEPrivacyFalseBottom">Podwójne dno</string>
+     <string name="OEPrivacyFalseBottomShowIn">Pokazuj w sekcji „%1$s”</string>
+@@ -129,7 +129,7 @@
+     <string name="OEAyuSaveInArchivedInfo">Usunięte i edytowane wiadomości z zarchiwizowanych czatów też są zapisywane.</string>
+     <string name="OEAyuDatabaseExport">Eksportuj bazę danych</string>
+     <string name="OEAyuDatabaseImport">Importuj bazę danych</string>
+-    <string name="OEAyuDatabaseImportInfo">Usunięte i edytowane wiadomości z tego pliku zostaną dodane do już zapisanych. Obsługiwane są eksporty z exteraless i AyuGram. Multimedia z innej aplikacji mogą być niedostępne.</string>
++    <string name="OEAyuDatabaseImportInfo">Usunięte i edytowane wiadomości z tego pliku zostaną dodane do już zapisanych. Obsługiwane są eksporty z PotuznoGram i AyuGram. Multimedia z innej aplikacji mogą być niedostępne.</string>
+     <string name="OEAyuDatabaseImportDone">Dodano wiadomości: %1$d</string>
+     <string name="OEAyuDatabaseImportFailed">Nie udało się zaimportować pliku</string>
+     <string name="OEAyuRegexReversed">Odwrócony</string>
 diff --git a/TMessagesProj/src/main/res/values-pt-rBR/strings.xml b/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
-index 280d1954..a8d4c2c6 100644
+index 280d19548..39ff96a29 100644
 --- a/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
 +++ b/TMessagesProj/src/main/res/values-pt-rBR/strings.xml
 @@ -1,7 +1,7 @@
@@ -328,13 +790,171 @@ index 280d1954..a8d4c2c6 100644
  <resources>
 -    <string name="AppName">Nagram X</string>
 -    <string name="AppNameBeta">Telegram Beta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">Português (Brasil)</string>
      <string name="English">Inglês</string>
      <string name="LanguageNameInEnglish">Portuguese (Brazil)</string>
+diff --git a/TMessagesProj/src/main/res/values-ru-rRU/strings_na.xml b/TMessagesProj/src/main/res/values-ru-rRU/strings_na.xml
+index 84297712c..43a4dfafe 100644
+--- a/TMessagesProj/src/main/res/values-ru-rRU/strings_na.xml
++++ b/TMessagesProj/src/main/res/values-ru-rRU/strings_na.xml
+@@ -9,7 +9,7 @@
+     <string name="SendReactions">Отправить реакцию</string>
+     <string name="ShowReactions">Показать реакции</string>
+     <string name="CustomTitle">Пользовательский заголовок</string>
+-    <string name="CustomTitleHint">Оставьте поле пустым, чтобы использовать «exteraless»</string>
++    <string name="CustomTitleHint">Оставьте поле пустым, чтобы использовать «PotuznoGram»</string>
+     <string name="CreateMono">Создать монопространство</string>
+     <string name="CreateMonoLanguage">Язык кода</string>
+     <string name="CopyPhoto">Копировать фото</string>
+diff --git a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe.xml b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe.xml
+index 251723cce..d04cd6f17 100644
+--- a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe.xml
+@@ -23,13 +23,13 @@
+     <string name="QrWifiPasswordCopied">Пароль скопирован</string>
+     <string name="QrWifiUnknownNetwork">В коде нет имени сети</string>
+     <string name="QrLoginHint">Этот код входит в аккаунт. Используйте Настройки → Устройства → Подключить устройство: тот экран проверяет код и защищает аккаунт.</string>
+-    <string name="AppIconExteraless" translatable="false">exteraless</string>
++    <string name="AppIconExteraless" translatable="false">PotuznoGram</string>
+     <string name="AppIconBlueprint" translatable="false">Blueprint</string>
+     <string name="AppIconRed" translatable="false">Red</string>
+     <string name="AppIconNya" translatable="false">Nya</string>
+     <string name="AppIconAyu" translatable="false">Ayu</string>
+     <string name="AppIconQuack" translatable="false">Quack</string>
+-    <string name="OpenExteraPreferences">Настройки exteraless</string>
++    <string name="OpenExteraPreferences">Настройки PotuznoGram</string>
+     <string name="OpenExteraDesignSection">Дизайн</string>
+     <string name="OpenExteraDesigner">Иконки и дизайн</string>
+     <string name="OpenExteraDesignStudio">Студия дизайна</string>
+diff --git a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_chats.xml b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_chats.xml
+index c4efb2d95..8a4217b53 100644
+--- a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_chats.xml
+@@ -152,8 +152,8 @@
+     <string name="OEChatsInlineMathCurrency">Валюты через @calcmulabot</string>
+     <string name="OEChatsInlineMathCurrencyInfo">Выражения с валютами, например «10 usd to rub =», отправляются боту @calcmulabot за курсом.</string>
+     <string name="OEChatsInlineMathAnnouncement">Результат: %1$s</string>
+-    <string name="OELocalPremiumInfo">Премиум-эмодзи уходят ссылками, которые exteraless и поддерживающие это клиенты показывают как настоящие эмодзи. Остальные функции Premium работают только на этом устройстве.</string>
+-    <string name="OELocalPremiumEmojiHint">У вас нет **Telegram Premium**, поэтому эмодзи уйдёт ссылкой: увидят его только пользователи **exteraless** и клиентов, поддерживающих это.</string>
++    <string name="OELocalPremiumInfo">Премиум-эмодзи уходят ссылками, которые PotuznoGram и поддерживающие это клиенты показывают как настоящие эмодзи. Остальные функции Premium работают только на этом устройстве.</string>
++    <string name="OELocalPremiumEmojiHint">У вас нет **Telegram Premium**, поэтому эмодзи уйдёт ссылкой: увидят его только пользователи **PotuznoGram** и клиентов, поддерживающих это.</string>
+     <string name="OEChatsSections">Разделы</string>
+     <string name="OEChatsMenus">Меню и кнопки</string>
+     <string name="OEChatsMenusInfo">Меню чата, сообщений и просмотра медиа</string>
+diff --git a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_general.xml b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_general.xml
+index 4342c8299..5dfc750c0 100644
+--- a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_general.xml
+@@ -67,7 +67,7 @@
+     <string name="OEGeneralImportEtgDone">Импортировано настроек: %1$d</string>
+     <string name="OEGeneralResetSettings">Сброс настроек</string>
+     <string name="OEGeneralResetSettingsInfo">Все настройки вернутся к значениям по умолчанию, приложение перезапустится.</string>
+-    <string name="OEGeneralResetSettingsDone">Настройки exteraless сброшены.</string>
++    <string name="OEGeneralResetSettingsDone">Настройки PotuznoGram сброшены.</string>
+     <string name="OEGeneralDeleteAccount">Удалить аккаунт</string>
+     <string name="DeepLFormalityDefault">Тон: как есть</string>
+     <string name="DeepLFormalityInformal">Тон: неформальный</string>
+@@ -111,7 +111,7 @@
+     <string name="OEGeneralMapProvider">Провайдер карт</string>
+     <string name="OEGeneralMapPreview">Превью локаций</string>
+     <string name="OEGeneralMapDriftingFix">Исправлять смещение карты</string>
+-    <string name="OECrashTitle">exteraless аварийно завершился</string>
++    <string name="OECrashTitle">PotuznoGram аварийно завершился</string>
+     <string name="OEGeneralNetworkHeader">Сеть</string>
+     <string name="OEPrivacyFalseBottom">Двойное дно</string>
+     <string name="OEPrivacyFalseBottomShowIn">Показывать в разделе «%1$s»</string>
+@@ -126,7 +126,7 @@
+     <string name="CloudConfigIncludeApiKeysDesc">Ключи API сервисов ИИ и перевода тоже попадут в облако.</string>
+     <string name="OECloudTitle">Облако</string>
+     <string name="OECloudHeroTitle">Настройки в облаке</string>
+-    <string name="OECloudHeroText">Храните настройки exteraless в Telegram и восстанавливайте их на любом устройстве с этим аккаунтом.</string>
++    <string name="OECloudHeroText">Храните настройки PotuznoGram в Telegram и восстанавливайте их на любом устройстве с этим аккаунтом.</string>
+     <string name="OECloudStatus">Состояние</string>
+     <string name="OECloudLocal">Это устройство</string>
+     <string name="OECloudRemote">Облако</string>
+@@ -188,7 +188,7 @@
+     <string name="OEAyuSaveInArchivedInfo">Удалённые и изменённые сообщения из чатов в архиве тоже сохраняются.</string>
+     <string name="OEAyuDatabaseExport">Экспорт базы</string>
+     <string name="OEAyuDatabaseImport">Импорт базы</string>
+-    <string name="OEAyuDatabaseImportInfo">Удалённые и изменённые сообщения из файла добавятся к уже сохранённым. Подходят выгрузки exteraless и AyuGram. Медиа из другого приложения могут не открыться.</string>
++    <string name="OEAyuDatabaseImportInfo">Удалённые и изменённые сообщения из файла добавятся к уже сохранённым. Подходят выгрузки PotuznoGram и AyuGram. Медиа из другого приложения могут не открыться.</string>
+     <string name="OEAyuDatabaseImportDone">Добавлено сообщений: %1$d</string>
+     <string name="OEAyuDatabaseImportFailed">Не удалось импортировать файл</string>
+     <string name="OEAyuRegexReversed">Обратный</string>
+diff --git a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_glyph.xml b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_glyph.xml
+index 73c3e6a38..92f321ea7 100644
+--- a/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_glyph.xml
++++ b/TMessagesProj/src/main/res/values-ru-rRU/strings_oe_glyph.xml
+@@ -8,5 +8,5 @@
+     <string name="OEGlyphScreenOff">Сообщения только при выключенном экране</string>
+     <string name="OEGlyphPreview">Предпросмотр</string>
+     <string name="OEGlyphUnsupported">Glyph Interface доступен только на Nothing Phone</string>
+-    <string name="OEGlyphInfo">Подсветка задней панели Nothing Phone: вспышка на входящие сообщения, логотип exteraless на Glyph Matrix Phone (3) и «дыхание» во время записи голосовых или входящего звонка. Заглушённые чаты вспышку не вызывают.</string>
++    <string name="OEGlyphInfo">Подсветка задней панели Nothing Phone: вспышка на входящие сообщения, логотип PotuznoGram на Glyph Matrix Phone (3) и «дыхание» во время записи голосовых или входящего звонка. Заглушённые чаты вспышку не вызывают.</string>
+ </resources>
+diff --git a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe.xml b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe.xml
+index 607aba078..e57f38c51 100644
+--- a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe.xml
+@@ -18,7 +18,7 @@
+     <string name="QrWifiPasswordCopied">密码已复制</string>
+     <string name="QrWifiUnknownNetwork">二维码中没有网络名称</string>
+     <string name="QrLoginHint">此二维码用于登录账号。请改用「设置 → 设备 → 关联桌面设备」，该界面会校验二维码并保护你的账号。</string>
+-    <string name="OpenExteraPreferences">exteraless 设置</string>
++    <string name="OpenExteraPreferences">PotuznoGram 设置</string>
+     <string name="OpenExteraDesignSection">设计</string>
+     <string name="OpenExteraDesigner">图标与设计</string>
+     <string name="OpenExteraDesignStudio">设计工作室</string>
+diff --git a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_chats.xml b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_chats.xml
+index db5877af4..aa371615b 100644
+--- a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_chats.xml
+@@ -140,8 +140,8 @@
+     <string name="OEChatsInlineMathCurrency">通过 @calcmulabot 换算货币</string>
+     <string name="OEChatsInlineMathCurrencyInfo">含货币的算式（如“10 usd to rub =”）会发送给 @calcmulabot 获取汇率。</string>
+     <string name="OEChatsInlineMathAnnouncement">结果：%1$s</string>
+-    <string name="OELocalPremiumInfo">高级表情会以链接形式发送，exteraless 及其他支持此功能的客户端会将其显示为真正的表情。其他 Premium 功能仅在此设备上生效。</string>
+-    <string name="OELocalPremiumEmojiHint">你没有 **Telegram Premium**，因此此表情会以链接形式发送：只有 **exteraless** 及支持此功能的客户端用户能看到它。</string>
++    <string name="OELocalPremiumInfo">高级表情会以链接形式发送，PotuznoGram 及其他支持此功能的客户端会将其显示为真正的表情。其他 Premium 功能仅在此设备上生效。</string>
++    <string name="OELocalPremiumEmojiHint">你没有 **Telegram Premium**，因此此表情会以链接形式发送：只有 **PotuznoGram** 及支持此功能的客户端用户能看到它。</string>
+     <string name="OEChatsSections">分区</string>
+     <string name="OEChatsMenus">菜单和按钮</string>
+     <string name="OEChatsMenusInfo">对话、消息和媒体查看器菜单</string>
+diff --git a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_general.xml b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_general.xml
+index 9c7a8f86a..63b69753e 100644
+--- a/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values-zh-rCN/strings_oe_general.xml
+@@ -52,7 +52,7 @@
+     <string name="OEGeneralImportEtgDone">已导入设置：%1$d 项</string>
+     <string name="OEGeneralResetSettings">重置设置</string>
+     <string name="OEGeneralResetSettingsInfo">所有设置都将恢复为默认值，应用将重新启动。</string>
+-    <string name="OEGeneralResetSettingsDone">exteraless 设置已重置。</string>
++    <string name="OEGeneralResetSettingsDone">PotuznoGram 设置已重置。</string>
+     <string name="OEGeneralDeleteAccount">删除账号</string>
+     <string name="DeepLFormalityDefault">语气：随原文</string>
+     <string name="DeepLFormalityInformal">语气：非正式</string>
+@@ -94,7 +94,7 @@
+     <string name="OEGeneralMapProvider">地图提供方</string>
+     <string name="OEGeneralMapPreview">位置预览</string>
+     <string name="OEGeneralMapDriftingFix">修正地图偏移</string>
+-    <string name="OECrashTitle">exteraless 已崩溃</string>
++    <string name="OECrashTitle">PotuznoGram 已崩溃</string>
+     <string name="OEGeneralNetworkHeader">网络</string>
+     <string name="OEPrivacyFalseBottom">私密空间</string>
+     <string name="OEPrivacyFalseBottomShowIn">在“%1$s”中显示</string>
+@@ -129,7 +129,7 @@
+     <string name="OEAyuSaveInArchivedInfo">也会保存已归档聊天中被删除和编辑的消息。</string>
+     <string name="OEAyuDatabaseExport">导出数据库</string>
+     <string name="OEAyuDatabaseImport">导入数据库</string>
+-    <string name="OEAyuDatabaseImportInfo">此文件中被删除和编辑的消息将添加到已保存的消息中。支持 exteraless 和 AyuGram 的导出文件。来自其他应用的媒体可能无法打开。</string>
++    <string name="OEAyuDatabaseImportInfo">此文件中被删除和编辑的消息将添加到已保存的消息中。支持 PotuznoGram 和 AyuGram 的导出文件。来自其他应用的媒体可能无法打开。</string>
+     <string name="OEAyuDatabaseImportDone">已添加消息：%1$d</string>
+     <string name="OEAyuDatabaseImportFailed">无法导入此文件</string>
+     <string name="OEAyuRegexReversed">反向</string>
 diff --git a/TMessagesProj/src/main/res/values/strings.xml b/TMessagesProj/src/main/res/values/strings.xml
-index d39ad329..46876d33 100644
+index a4e789bb1..343f7ca63 100644
 --- a/TMessagesProj/src/main/res/values/strings.xml
 +++ b/TMessagesProj/src/main/res/values/strings.xml
 @@ -1,7 +1,7 @@
@@ -342,38 +962,160 @@ index d39ad329..46876d33 100644
  <resources>
 -    <string name="AppName">exteraless</string>
 -    <string name="AppNameBeta">Telegram Beta</string>
-+    <string name="AppName">ПотужноGram</string>
-+    <string name="AppNameBeta">ПотужноGram</string>
++    <string name="AppName">PotuznoGram</string>
++    <string name="AppNameBeta">PotuznoGram</string>
      <string name="LanguageName">English</string>
      <string name="English">English</string>
      <string name="LanguageNameInEnglish">English</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_na.xml b/TMessagesProj/src/main/res/values/strings_na.xml
+index 8cc763967..a1f745970 100644
+--- a/TMessagesProj/src/main/res/values/strings_na.xml
++++ b/TMessagesProj/src/main/res/values/strings_na.xml
+@@ -9,7 +9,7 @@
+     <string name="SendReactions">Send Reactions</string>
+     <string name="ShowReactions">Show Reactions</string>
+     <string name="CustomTitle">Custom Title</string>
+-    <string name="CustomTitleHint">Leave blank to use exteraless</string>
++    <string name="CustomTitleHint">Leave blank to use PotuznoGram</string>
+     <string name="CreateMono">Create Monospace</string>
+     <string name="CreateMonoLanguage">Code Language</string>
+     <string name="CopyPhoto">Copy Photo</string>
+@@ -39,7 +39,7 @@
+     <string name="CustomEditedMessage">Custom Edited Mark</string>
+     <string name="NotificationIcon">Notification Icon</string>
+     <string name="Official">Official</string>
+-    <string name="Nagram" translatable="false">exteraless</string>
++    <string name="Nagram" translatable="false">PotuznoGram</string>
+     <string name="HalloWeen">HalloWeen</string>
+     <string name="ShowOnlineStatus">Show Online Status</string>
+     <string name="ShowOnlineStatusNotice">Show the online status of other people next to their profile photo in groups.</string>
 diff --git a/TMessagesProj/src/main/res/values/strings_nax.xml b/TMessagesProj/src/main/res/values/strings_nax.xml
-index 2e4b8f16..b50d271c 100644
+index a3028f611..e83c3058d 100644
 --- a/TMessagesProj/src/main/res/values/strings_nax.xml
 +++ b/TMessagesProj/src/main/res/values/strings_nax.xml
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="utf-8"?>
  <resources>
 -    <string name="NagramX" translatable="false">exteraless</string>
-+    <string name="NagramX" translatable="false">ПотужноGram</string>
++    <string name="NagramX" translatable="false">PotuznoGram</string>
      <string name="XChannel">Nagram X Channel</string>
      <string name="EnableSaveDeletedMessages">Save Deleted Messages</string>
      <string name="DeletedMessage">deleted</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_oe.xml b/TMessagesProj/src/main/res/values/strings_oe.xml
+index e34c3d47d..8c58cee16 100644
+--- a/TMessagesProj/src/main/res/values/strings_oe.xml
++++ b/TMessagesProj/src/main/res/values/strings_oe.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <!-- Строки фич, перенесённых из exteraGram. -->
+ <resources>
+-    <string name="OpenExtera" translatable="false">exteraless</string>
++    <string name="OpenExtera" translatable="false">PotuznoGram</string>
+     <string name="OpenExteraInfo">Make the client truly yours</string>
+ 
+ 
+@@ -25,7 +25,7 @@
+     <string name="QrWifiPasswordCopied">Password copied</string>
+     <string name="QrWifiUnknownNetwork">Network name is missing from the code</string>
+     <string name="QrLoginHint">This code logs into an account. Use Settings → Devices → Link Desktop Device — that screen checks the code and protects your account.</string>
+-    <string name="AppIconExteraless" translatable="false">exteraless</string>
++    <string name="AppIconExteraless" translatable="false">PotuznoGram</string>
+     <string name="AppIconBlueprint" translatable="false">Blueprint</string>
+     <string name="AppIconRed" translatable="false">Red</string>
+     <string name="AppIconNya" translatable="false">Nya</string>
+@@ -55,7 +55,7 @@
+     <string name="AppIconInfoPremium"><!-- сюда подпись --></string>
+     <string name="AppIconInfoTurbo"><!-- сюда подпись --></string>
+     <string name="AppIconInfoNox"><!-- сюда подпись --></string>
+-    <string name="OpenExteraPreferences">exteraless Preferences</string>
++    <string name="OpenExteraPreferences">PotuznoGram Preferences</string>
+     <string name="OpenExteraDesignSection">Design</string>
+     <string name="OpenExteraDesigner">Icons and design</string>
+     <string name="OpenExteraDesignStudio">Design studio</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_oe_chats.xml b/TMessagesProj/src/main/res/values/strings_oe_chats.xml
+index 1834ff84f..207aa8deb 100644
+--- a/TMessagesProj/src/main/res/values/strings_oe_chats.xml
++++ b/TMessagesProj/src/main/res/values/strings_oe_chats.xml
+@@ -155,8 +155,8 @@
+     <string name="OEChatsInlineMathCurrency">Currencies via @calcmulabot</string>
+     <string name="OEChatsInlineMathCurrencyInfo">Expressions with currencies like “10 usd to rub =” are sent to @calcmulabot to get the rate.</string>
+     <string name="OEChatsInlineMathAnnouncement">Result: %1$s</string>
+-    <string name="OELocalPremiumInfo">Premium emoji are sent as links that exteraless and other clients that support this show as the real emoji. Other Premium features work only on this device.</string>
+-    <string name="OELocalPremiumEmojiHint">You don\'t have **Telegram Premium**, so this emoji is sent as a link: only users of **exteraless** and clients that support this will see it.</string>
++    <string name="OELocalPremiumInfo">Premium emoji are sent as links that PotuznoGram and other clients that support this show as the real emoji. Other Premium features work only on this device.</string>
++    <string name="OELocalPremiumEmojiHint">You don\'t have **Telegram Premium**, so this emoji is sent as a link: only users of **PotuznoGram** and clients that support this will see it.</string>
+     <string name="OEChatsSections">Sections</string>
+     <string name="OEChatsMenus">Menus and Buttons</string>
+     <string name="OEChatsMenusInfo">Chat, message and media viewer menus</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_oe_general.xml b/TMessagesProj/src/main/res/values/strings_oe_general.xml
+index e957194bc..413ab3ede 100644
+--- a/TMessagesProj/src/main/res/values/strings_oe_general.xml
++++ b/TMessagesProj/src/main/res/values/strings_oe_general.xml
+@@ -71,7 +71,7 @@
+     <string name="OEGeneralImportEtgDone">Settings imported: %1$d</string>
+     <string name="OEGeneralResetSettings">Reset Settings</string>
+     <string name="OEGeneralResetSettingsInfo">All settings will be reset to their default values, and the app will restart.</string>
+-    <string name="OEGeneralResetSettingsDone">exteraless preferences have been reset.</string>
++    <string name="OEGeneralResetSettingsDone">PotuznoGram preferences have been reset.</string>
+     <string name="OEGeneralDeleteAccount">Delete Account</string>
+     <string name="DeepLFormalityDefault">Tone: as it comes</string>
+     <string name="DeepLFormalityInformal">Tone: informal</string>
+@@ -113,7 +113,7 @@
+     <string name="OEGeneralMapProvider">Map provider</string>
+     <string name="OEGeneralMapPreview">Location previews</string>
+     <string name="OEGeneralMapDriftingFix">Fix map drifting</string>
+-    <string name="OECrashTitle">exteraless crashed</string>
++    <string name="OECrashTitle">PotuznoGram crashed</string>
+     <string name="OEGeneralNetworkHeader">Network</string>
+     <string name="OEGeneralDnsOverHttps" translatable="false">DNS over HTTPS</string>
+     <string name="OEPrivacyFalseBottom">False Bottom</string>
+@@ -129,7 +129,7 @@
+     <string name="CloudConfigIncludeApiKeysDesc">API keys of AI and translation services are uploaded to the cloud too.</string>
+     <string name="OECloudTitle">Cloud</string>
+     <string name="OECloudHeroTitle">Settings in the cloud</string>
+-    <string name="OECloudHeroText">Keep your exteraless settings in Telegram and restore them on any device signed in to this account.</string>
++    <string name="OECloudHeroText">Keep your PotuznoGram settings in Telegram and restore them on any device signed in to this account.</string>
+     <string name="OECloudStatus">Status</string>
+     <string name="OECloudLocal">This device</string>
+     <string name="OECloudRemote">Cloud</string>
+@@ -191,7 +191,7 @@
+     <string name="OEAyuSaveInArchivedInfo">Deleted and edited messages from chats in the archive are saved too.</string>
+     <string name="OEAyuDatabaseExport">Export database</string>
+     <string name="OEAyuDatabaseImport">Import database</string>
+-    <string name="OEAyuDatabaseImportInfo">Deleted and edited messages from this file will be added to the ones already saved. Exports from exteraless and AyuGram are supported. Media from another app may be unavailable.</string>
++    <string name="OEAyuDatabaseImportInfo">Deleted and edited messages from this file will be added to the ones already saved. Exports from PotuznoGram and AyuGram are supported. Media from another app may be unavailable.</string>
+     <string name="OEAyuDatabaseImportDone">Messages added: %1$d</string>
+     <string name="OEAyuDatabaseImportFailed">Couldn\'t import this file</string>
+     <string name="OEAyuRegexReversed">Reversed</string>
+diff --git a/TMessagesProj/src/main/res/values/strings_oe_glyph.xml b/TMessagesProj/src/main/res/values/strings_oe_glyph.xml
+index 0ec402f07..2b0710468 100644
+--- a/TMessagesProj/src/main/res/values/strings_oe_glyph.xml
++++ b/TMessagesProj/src/main/res/values/strings_oe_glyph.xml
+@@ -9,5 +9,5 @@
+     <string name="OEGlyphScreenOff">Messages only when screen is off</string>
+     <string name="OEGlyphPreview">Preview</string>
+     <string name="OEGlyphUnsupported">Glyph Interface is only available on Nothing phones</string>
+-    <string name="OEGlyphInfo">Lights up the Glyph Interface on the back of your Nothing phone: a flash for incoming messages, the exteraless logo on the Phone (3) Glyph Matrix and a breathing glow while recording voice messages or receiving a call. Muted chats never trigger the flash.</string>
++    <string name="OEGlyphInfo">Lights up the Glyph Interface on the back of your Nothing phone: a flash for incoming messages, the PotuznoGram logo on the Phone (3) Glyph Matrix and a breathing glow while recording voice messages or receiving a call. Muted chats never trigger the flash.</string>
+ </resources>
 diff --git a/gradle.properties b/gradle.properties
-index 12b7b89a..b16ef3a1 100644
+index cef7edb25..14825e09b 100644
 --- a/gradle.properties
 +++ b/gradle.properties
-@@ -15,7 +15,7 @@
+@@ -13,9 +13,9 @@
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+ # org.gradle.parallel=true
  #Sat Mar 12 05:53:50 MSK 2016
- APP_VERSION_CODE=7175
- APP_VERSION_NAME=13.0.2
+-APP_VERSION_CODE=7112
++APP_VERSION_CODE=7115
+ APP_VERSION_NAME=12.10.6
 -APP_PACKAGE=com.exteraless.app
 +APP_PACKAGE=ua.potuzhnogram.messenger
  # Отладочный ключ Nothing Glyph SDK; боевой подставляется через GLYPH_API_KEY при сборке.
  GLYPH_API_KEY=test
  android.useAndroidX=true
 diff --git a/settings.gradle b/settings.gradle
-index 72f0e452..6176db7a 100644
+index 72f0e4526..6176db7a6 100644
 --- a/settings.gradle
 +++ b/settings.gradle
 @@ -25,7 +25,7 @@ dependencyResolutionManagement {

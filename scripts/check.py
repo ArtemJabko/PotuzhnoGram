@@ -20,8 +20,11 @@ plugin = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(plugin)
 assert plugin.PotuzhnoHello().create_settings()[0].text.startswith("ПотужноGram")
 for path in (root / "overlay/TMessagesProj/src/main/assets").glob("*.attheme"):
-    header, wallpaper = path.read_bytes().split(b"WPS\n", 1)
-    assert wallpaper.startswith(b"\xff\xd8") and wallpaper.endswith(b"\xff\xd9\nWPE\n")
+    parts = path.read_bytes().split(b"WPS\n", 1)
+    header = parts[0]
+    if len(parts) == 2:
+        wallpaper = parts[1]
+        assert wallpaper.startswith(b"\xff\xd8") and wallpaper.endswith(b"\xff\xd9\nWPE\n")
     for line in header.decode().splitlines():
         key, value = line.split("=")
         assert -(2**31) <= int(value) < 2**31, key

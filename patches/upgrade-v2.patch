@@ -1,0 +1,160 @@
+diff --git a/TMessagesProj/src/main/AndroidManifest.xml b/TMessagesProj/src/main/AndroidManifest.xml
+index 4c5f30178..89008682e 100644
+--- a/TMessagesProj/src/main/AndroidManifest.xml
++++ b/TMessagesProj/src/main/AndroidManifest.xml
+@@ -177,6 +177,27 @@
+             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+         </activity-alias>
+ 
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoBarrelIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_barrel"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_barrel" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoDumplingIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_dumpling"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_dumpling" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
++        <activity-alias android:enabled="false" android:name="org.telegram.messenger.PotuznoPigeonIcon"
++            android:targetActivity="org.telegram.ui.LaunchActivity" android:icon="@mipmap/ic_launcher_potuzno_pigeon"
++            android:roundIcon="@mipmap/ic_launcher_potuzno_pigeon" android:exported="true">
++            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
++            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
++        </activity-alias>
++
+         <activity-alias
+             android:enabled="false"
+             android:name="org.telegram.messenger.BlueprintIcon"
+diff --git a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
+index 87b51c0e3..1143332c1 100644
+--- a/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
++++ b/TMessagesProj/src/main/java/app/exteraless/settings/OpenExteraSettingsActivity.java
+@@ -37,6 +37,7 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+     private int chatsRow;
+     private int pluginsRow;
+     private int otherRow;
++    private int potuzhnoMeterRow;
+     private int categoriesDividerRow;
+ 
+     private int linksHeaderRow;
+@@ -61,6 +62,7 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+         chatsRow = addRow("chats");
+         pluginsRow = addRow("plugins");
+         otherRow = addRow("other");
++        potuzhnoMeterRow = addRow("potuzhnoMeter");
+         categoriesDividerRow = addRow();
+ 
+         linksHeaderRow = addRow("linksHeader");
+@@ -185,6 +187,8 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+             presentFragment(new app.exteraless.plugins.ui.PluginsActivity());
+         } else if (position == otherRow) {
+             presentFragment(new OpenExteraOtherActivity());
++        } else if (position == potuzhnoMeterRow) {
++            presentFragment(new PotuzhnoMeterActivity());
+         } else if (position == channelRow) {
+             getMessagesController().openByUserName("PotuznoGram", this, 1);
+         } else if (position == sourceRow) {
+@@ -242,7 +246,9 @@ public class OpenExteraSettingsActivity extends BaseNekoSettingsActivity {
+                     } else if (position == pluginsRow) {
+                         cell.setTextAndIcon(getString(R.string.OpenExteraPlugins), R.drawable.msg_plugins, true);
+                     } else if (position == otherRow) {
+-                        cell.setTextAndIcon(getString(R.string.OpenExteraOther), R.drawable.msg_fave, false);
++                        cell.setTextAndIcon(getString(R.string.OpenExteraOther), R.drawable.msg_fave, true);
++                    } else if (position == potuzhnoMeterRow) {
++                        cell.setTextAndIcon("ПотужноМетр", R.drawable.msg_fave, false);
+                     } else if (position == channelRow) {
+                         cell.setTextAndValueAndIcon(getString(R.string.ProfileChannel),
+                                 "@PotuznoGram", R.drawable.msg_channel, true);
+diff --git a/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java b/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
+index dc9300c43..a7d094220 100644
+--- a/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
++++ b/TMessagesProj/src/main/java/com/exteragram/messenger/utils/text/LocaleUtils.java
+@@ -198,7 +198,7 @@ public abstract class LocaleUtils {
+         try {
+             return ApplicationLoader.applicationContext.getString(R.string.OpenExtera);
+         } catch (Exception e) {
+-            return "exteraless";
++            return "PotuznoGram";
+         }
+     }
+ 
+diff --git a/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java b/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
+index d637eac4b..1b188b722 100644
+--- a/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
++++ b/TMessagesProj/src/main/java/org/telegram/messenger/LocaleController.java
+@@ -1473,7 +1473,7 @@ public class LocaleController {
+         try {
+             return ApplicationLoader.applicationContext.getString(R.string.OpenExtera);
+         } catch (Exception ignore) {
+-            return "exteraless";
++            return "PotuznoGram";
+         }
+     }
+ 
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
+index 078b1cd0c..e23cbc684 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java
+@@ -4115,7 +4115,7 @@ public class Theme {
+ 
+         themeInfo = new ThemeInfo();
+         themeInfo.name = "Потужно • День";
+-        themeInfo.assetName = "potuzhno_day_v2.attheme";
++        themeInfo.assetName = "potuzhno_day_v4.attheme";
+         themeInfo.isDark = ThemeInfo.LIGHT;
+         themeInfo.previewBackgroundColor = 0xfff2f6fc;
+         themeInfo.previewInColor = 0xffffffff;
+@@ -4127,7 +4127,7 @@ public class Theme {
+ 
+         themeInfo = new ThemeInfo();
+         themeInfo.name = "Потужно • Ніч";
+-        themeInfo.assetName = "potuzhno_night_v2.attheme";
++        themeInfo.assetName = "potuzhno_night_v4.attheme";
+         themeInfo.isDark = ThemeInfo.DARK;
+         themeInfo.previewBackgroundColor = 0xff101d32;
+         themeInfo.previewInColor = 0xff192b46;
+diff --git a/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java b/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
+index 6eb2647e2..83bc9018a 100644
+--- a/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
++++ b/TMessagesProj/src/main/java/org/telegram/ui/LauncherIconController.java
+@@ -44,6 +44,9 @@ public class LauncherIconController {
+         POTUZNO_SUNFLOWER("PotuznoSunflowerIcon", R.drawable.potuzno_sunflower_background, R.drawable.potuzno_sunflower_foreground, R.string.PotuznoIconSunflower),
+         POTUZNO_PIXEL("PotuznoPixelIcon", R.drawable.potuzno_pixel_background, R.drawable.potuzno_pixel_foreground, R.string.PotuznoIconPixel),
+         POTUZNO_CANDY("PotuznoCandyIcon", R.drawable.potuzno_candy_background, R.drawable.potuzno_candy_foreground, R.string.PotuznoIconCandy),
++        POTUZNO_BARREL("PotuznoBarrelIcon", R.drawable.potuzno_barrel_background, R.drawable.potuzno_barrel_foreground, R.string.PotuznoIconBarrel),
++        POTUZNO_DUMPLING("PotuznoDumplingIcon", R.drawable.potuzno_dumpling_background, R.drawable.potuzno_dumpling_foreground, R.string.PotuznoIconDumpling),
++        POTUZNO_PIGEON("PotuznoPigeonIcon", R.drawable.potuzno_pigeon_background, R.drawable.potuzno_pigeon_foreground, R.string.PotuznoIconPigeon),
+         BLUEPRINT("BlueprintIcon", R.drawable.blueprint_icon_background,
+                 R.drawable.blueprint_icon_foreground, R.string.AppIconBlueprint),
+         RED("RedIcon", R.drawable.red_icon_background,
+diff --git a/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java b/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
+index f0aa701ea..3e7f8ece5 100644
+--- a/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
++++ b/TMessagesProj/src/main/java/tw/nekomimi/nekogram/helpers/TypefaceHelper.java
+@@ -316,7 +316,7 @@ public class TypefaceHelper {
+     }
+ 
+     public static SpannableStringBuilder getTitleText(int currentAccount) {
+-        String title = (String) NaConfig.INSTANCE.getCustomTitle().defaultValue;
++        String title = LocaleController.getAppName();
+         // openExtera: заголовок списка чатов (AppearanceConfig.titleText).
+         // Перенесено из exteraGram 12.9.0, LocaleUtils.getActionBarTitle(int).
+         // 0 — имя приложения (NagramX customTitle), 1 — username, 2 — имя, 3 — «Чаты».
+diff --git a/gradle.properties b/gradle.properties
+index e513a1169..14825e09b 100644
+--- a/gradle.properties
++++ b/gradle.properties
+@@ -13,7 +13,7 @@
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+ # org.gradle.parallel=true
+ #Sat Mar 12 05:53:50 MSK 2016
+-APP_VERSION_CODE=7113
++APP_VERSION_CODE=7115
+ APP_VERSION_NAME=12.10.6
+ APP_PACKAGE=ua.potuzhnogram.messenger
+ # Отладочный ключ Nothing Glyph SDK; боевой подставляется через GLYPH_API_KEY при сборке.
